@@ -1,0 +1,26 @@
+site_name: Marc Puig - Notes
+theme:
+  name: material
+  language: en
+nav:
+  - index.md
+  - FastAPI Basics:
+      - fastapi_basics/index.md
+      - fastapi_basics/00.up_and_running.md
+      - fastapi_basics/01.data_schemas.md
+      - fastapi_basics/02.repository_pattern.md
+      - fastapi_basics/03.api_with_repository.md
+      - fastapi_basics/04.service_layer_pattern.md
+      - fastapi_basics/05.sql_repository.md
+      - fastapi_basics/06.settings.md
+docs_dir: docs
+extra_css:
+  - css/extra.css
+markdown_extensions:
+  - codehilite
+plugins:
+  - gitdiff:
+      repository: /Users/marc/Projects/fastapi_basics
+      show_chunk_headers: True
+      show_legends: False
+      context_lines: 10
