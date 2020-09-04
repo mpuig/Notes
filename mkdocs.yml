@@ -13,7 +13,7 @@ nav:
       - fastapi_basics/04.service_layer_pattern.md
       - fastapi_basics/05.sql_repository.md
       - fastapi_basics/06.settings.md
-docs_dir: docs
+docs_dir: src
 extra_css:
   - css/extra.css
 markdown_extensions:
