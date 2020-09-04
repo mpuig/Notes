@@ -1,0 +1,1438 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>The Repository Pattern - Marc Puig - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#repository-pattern" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Marc Puig - Notes" class="md-header-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Marc Puig - Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              The Repository Pattern
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Marc Puig - Notes" class="md-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Marc Puig - Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="This Site" class="md-nav__link">
+      This Site
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      FastAPI Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="FastAPI Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        FastAPI Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00.up_and_running/" title="Up and Running FastAPI" class="md-nav__link">
+      Up and Running FastAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01.data_schemas/" title="Define Data Schemas" class="md-nav__link">
+      Define Data Schemas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        The Repository Pattern
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="The Repository Pattern" class="md-nav__link md-nav__link--active">
+      The Repository Pattern
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repository-pattern" class="md-nav__link">
+    Repository Pattern
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-contract" class="md-nav__link">
+    The Contract
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-isolation" class="md-nav__link">
+    Complete Isolation.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    Advantages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-abstract-class" class="md-nav__link">
+    Create the Abstract Class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-a-basic-test-and-define-empty-in-memory-repository" class="md-nav__link">
+    Write a Basic Test and Define Empty In-Memory Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-all-methods-from-the-contract" class="md-nav__link">
+    Implement all Methods from the Contract
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-that-added-books-are-valid" class="md-nav__link">
+    Check that Added Books are Valid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improving-tests-fixtures" class="md-nav__link">
+    Improving Tests: Fixtures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-refactor" class="md-nav__link">
+    Code Refactor
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Refactor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-schemas" class="md-nav__link">
+    Data Schemas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    Repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03.api_with_repository/" title="An API with a Repository" class="md-nav__link">
+      An API with a Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-nav__link">
+      The Service Layer Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05.sql_repository/" title="SQL Repository" class="md-nav__link">
+      SQL Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06.settings/" title="Project Settings" class="md-nav__link">
+      Project Settings
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repository-pattern" class="md-nav__link">
+    Repository Pattern
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-contract" class="md-nav__link">
+    The Contract
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-isolation" class="md-nav__link">
+    Complete Isolation.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    Advantages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-abstract-class" class="md-nav__link">
+    Create the Abstract Class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-a-basic-test-and-define-empty-in-memory-repository" class="md-nav__link">
+    Write a Basic Test and Define Empty In-Memory Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-all-methods-from-the-contract" class="md-nav__link">
+    Implement all Methods from the Contract
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-that-added-books-are-valid" class="md-nav__link">
+    Check that Added Books are Valid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improving-tests-fixtures" class="md-nav__link">
+    Improving Tests: Fixtures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-refactor" class="md-nav__link">
+    Code Refactor
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Refactor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-schemas" class="md-nav__link">
+    Data Schemas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    Repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>The Repository Pattern</h1>
+                
+                <p>Defining objects using <a href="../01.data_schemas/">data schemas</a> is very useful to do field validations and be consistent along the code. 
+Next step is to define a place where to store collections of objects, and this is done in repositories.</p>
+<h2 id="repository-pattern">Repository Pattern</h2>
+<p>The basics for the <a href="https://martinfowler.com/eaaCatalog/repository.html">Repository Pattern</a> are:</p>
+<ul>
+<li>Define an interface for the repository.</li>
+<li>And then you could have as many implementations as you like</li>
+</ul>
+<h3 id="the-contract">The Contract</h3>
+<p>With this pattern, the important part is not how we implement the repository. The important thing is that all repositories
+and the implementations respect the defined contract (interface) and all use the same methods.
+Then we can implement controllers that no longer depend on a specific repository implementation.</p>
+<p>Now all we have to do is set up a dependency injection framework to use the desired repository implementation.
+The dependency injection framework manages the instances of the repository classes and "injects" them into the controller constructor.
+And simply by modifying these settings we could change our data access technology without touching a single line of code in your controller.</p>
+<h3 id="complete-isolation">Complete Isolation.</h3>
+<p>And this is where unit testing comes in. Using this pattern allows us to isolate the different layers.
+Since the controller code is loosely coupled to the repository, all we have to do in unit tests is
+provide a mock implementation in the repository that allows you to define its behavior.
+This gives us the ability to unit test controller actions without relying on a database or whatever.</p>
+<h3 id="advantages">Advantages</h3>
+<p>Using the Repository Pattern has many advantages:</p>
+<ul>
+<li>Your business logic can be unit tested without data access logic.</li>
+<li>The database access code can be reused and is managed centrally, making it easy to implement any database access policy.</li>
+<li>It is easy to implement the domain logic.</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>Let's see it with a simple example:</p>
+<p>First of all, let's create a new test file:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">touch tests/test_02_repositories.py </span>
+</code></pre></div>
+
+
+<h3 id="create-the-abstract-class">Create the Abstract Class</h3>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -0,0 +1,22 @@</span>
+
+<span class="gi">+from abc import ABC, abstractmethod</span>
+<span class="gi">+from typing import List</span>
+<span class="gi">+from uuid import UUID</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class Book(object):</span>
+<span class="gi">+    pass</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookRepository(ABC):</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def add(self, book: Book) -&gt; Book:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; Book:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def list(self) -&gt; List[Book]:</span>
+<span class="gi">+        raise NotImplementedError</span>
+</code></pre></div>
+
+
+<p>For this example, we'll create a very simple repository, that stores all the information in an in-memory dictionary.</p>
+<h3 id="write-a-basic-test-and-define-empty-in-memory-repository">Write a Basic Test and Define Empty In-Memory Repository</h3>
+<p>The first step is to create the initial test and the initial repository implementation, defining all methods:  </p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -13,10 +13,26 @@</span>
+
+     def add(self, book: Book) -&gt; Book:
+         raise NotImplementedError
+
+     @abstractmethod
+     def get(self, book_id: UUID) -&gt; Book:
+         raise NotImplementedError
+
+     @abstractmethod
+     def list(self) -&gt; List[Book]:
+         raise NotImplementedError
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class InMemoryBookRepository(BookRepository):</span>
+<span class="gi">+    def add(self, new_book: Book) -&gt; Book:</span>
+<span class="gi">+        pass</span>
+<span class="gi">+</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; Book:</span>
+<span class="gi">+        pass</span>
+<span class="gi">+</span>
+<span class="gi">+    def list(self) -&gt; List[Book]:</span>
+<span class="gi">+        pass</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_in_memory_repository_created_successfully():</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+<span class="gi">+    assert type(repo) == InMemoryBookRepository</span>
+</code></pre></div>
+
+
+<p>Then, we add the book dictionary variable to store all books: </p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -16,23 +16,31 @@</span>
+
+     @abstractmethod
+     def get(self, book_id: UUID) -&gt; Book:
+         raise NotImplementedError
+
+     @abstractmethod
+     def list(self) -&gt; List[Book]:
+         raise NotImplementedError
+
+
+ class InMemoryBookRepository(BookRepository):
+<span class="gi">+    books = dict()  # this sets a class-level attribute, common to all instances of `InMemoryBooksRepository`</span>
+<span class="gi">+</span>
+     def add(self, new_book: Book) -&gt; Book:
+         pass
+
+     def get(self, book_id: UUID) -&gt; Book:
+         pass
+
+     def list(self) -&gt; List[Book]:
+<span class="gd">-        pass</span>
+<span class="gi">+        return [book for book_id, book in self.books.items()]</span>
+
+
+ def test_in_memory_repository_created_successfully():
+     repo = InMemoryBookRepository()
+     assert type(repo) == InMemoryBookRepository
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_in_memory_repository_initially_empty_successfully():</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+<span class="gi">+    items = repo.list()</span>
+<span class="gi">+    assert len(items) == 0</span>
+</code></pre></div>
+
+
+<h3 id="implement-all-methods-from-the-contract">Implement all Methods from the Contract</h3>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,46 +1,71 @@</span>
+
+ from abc import ABC, abstractmethod
+<span class="gd">-from typing import List</span>
+<span class="gd">-from uuid import UUID</span>
+<span class="gi">+from typing import List, Optional</span>
+<span class="gi">+from uuid import UUID, uuid4</span>
+<span class="gi">+</span>
+<span class="gi">+import pytest</span>
+<span class="gi">+from pydantic import BaseModel, Field</span>
+
+
+<span class="gd">-class Book(object):</span>
+<span class="gd">-    pass</span>
+<span class="gi">+class Book(BaseModel):</span>
+<span class="gi">+    title: str</span>
+<span class="gi">+    author: str</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookInDB(Book):</span>
+<span class="gi">+    id: UUID = Field(default_factory=uuid4)</span>
+
+
+ class BookRepository(ABC):
+
+     @abstractmethod
+<span class="gd">-    def add(self, book: Book) -&gt; Book:</span>
+<span class="gi">+    def add(self, book: Book) -&gt; BookInDB:</span>
+         raise NotImplementedError
+
+     @abstractmethod
+<span class="gd">-    def get(self, book_id: UUID) -&gt; Book:</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+         raise NotImplementedError
+
+     @abstractmethod
+<span class="gd">-    def list(self) -&gt; List[Book]:</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+         raise NotImplementedError
+
+
+ class InMemoryBookRepository(BookRepository):
+     books = dict()  # this sets a class-level attribute, common to all instances of `InMemoryBooksRepository`
+
+<span class="gd">-    def add(self, new_book: Book) -&gt; Book:</span>
+<span class="gd">-        pass</span>
+<span class="gi">+    def add(self, new_book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        book = BookInDB(**new_book.dict())</span>
+<span class="gi">+        self.books[book.id] = book</span>
+<span class="gi">+        return book</span>
+
+<span class="gd">-    def get(self, book_id: UUID) -&gt; Book:</span>
+<span class="gd">-        pass</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; Optional[BookInDB]:</span>
+<span class="gi">+        return self.books.get(book_id, None)</span>
+
+<span class="gd">-    def list(self) -&gt; List[Book]:</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+         return [book for book_id, book in self.books.items()]
+
+
+ def test_in_memory_repository_created_successfully():
+     repo = InMemoryBookRepository()
+     assert type(repo) == InMemoryBookRepository
+
+
+ def test_in_memory_repository_initially_empty_successfully():
+     repo = InMemoryBookRepository()
+     items = repo.list()
+     assert len(items) == 0
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture()</span>
+<span class="gi">+def a_book() -&gt; Book:</span>
+<span class="gi">+    return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_add_valid_data_to_in_memory_repository_successfully(a_book):</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo.add(a_book)</span>
+<span class="gi">+    items = repo.list()</span>
+<span class="gi">+    assert len(items) == 1</span>
+<span class="gi">+    assert isinstance(items[0], Book)</span>
+<span class="gi">+    assert items[0].title == a_book.title</span>
+<span class="gi">+    assert items[0].author == a_book.author</span>
+</code></pre></div>
+
+
+<h3 id="check-that-added-books-are-valid">Check that Added Books are Valid</h3>
+<p>We need to be sure that the implementation is as robust as possible. To do it, we write a test forcing to add a data
+structure different than a Book, and we see that fails. Then we need to add some extra validation to the <code>add</code> method, 
+just to check that the <code>new_book</code> is a <code>Book</code> type instance.</p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -27,20 +27,22 @@</span>
+
+
+     @abstractmethod
+     def list(self) -&gt; List[BookInDB]:
+         raise NotImplementedError
+
+
+ class InMemoryBookRepository(BookRepository):
+     books = dict()  # this sets a class-level attribute, common to all instances of `InMemoryBooksRepository`
+
+     def add(self, new_book: Book) -&gt; BookInDB:
+<span class="gi">+        if not isinstance(new_book, Book):</span>
+<span class="gi">+            raise ValueError(&quot;This repository only accepts Book objects.&quot;)</span>
+         book = BookInDB(**new_book.dict())
+         self.books[book.id] = book
+         return book
+
+     def get(self, book_id: UUID) -&gt; Optional[BookInDB]:
+         return self.books.get(book_id, None)
+
+     def list(self) -&gt; List[BookInDB]:
+         return [book for book_id, book in self.books.items()]
+
+<span class="gu">@@ -62,10 +64,20 @@</span>
+
+
+
+ def test_add_valid_data_to_in_memory_repository_successfully(a_book):
+     repo = InMemoryBookRepository()
+     repo.add(a_book)
+     items = repo.list()
+     assert len(items) == 1
+     assert isinstance(items[0], Book)
+     assert items[0].title == a_book.title
+     assert items[0].author == a_book.author
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_add_invalid_data_to_n_memory_repository_raises_exception():</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+<span class="gi">+    a_dictionary = dict(title=&quot;Foo&quot;, author=&quot;Boo&quot;)</span>
+<span class="gi">+    with pytest.raises(ValueError):</span>
+<span class="gi">+        repo.add(a_dictionary)</span>
+<span class="gi">+</span>
+<span class="gi">+    items = repo.list()</span>
+<span class="gi">+    assert len(items) == 0</span>
+</code></pre></div>
+
+
+<p>At this point, we get a new error, because we are using a class-level variable to store the books. This means that
+all the of <code>InMemoryBooksRepository</code> shares the same variable. To solve this, we can do an optional initialization
+of the <code>self.books</code> variable in the <code>__init__</code> method.</p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,83 +1,60 @@</span>
+
+<span class="gd">-from abc import ABC, abstractmethod</span>
+<span class="gd">-from typing import List, Optional</span>
+<span class="gd">-from uuid import UUID, uuid4</span>
+<span class="gi">+from uuid import UUID</span>
+
+ import pytest
+<span class="gd">-from pydantic import BaseModel, Field</span>
+
+<span class="gd">-</span>
+<span class="gd">-class Book(BaseModel):</span>
+<span class="gd">-    title: str</span>
+<span class="gd">-    author: str</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class BookInDB(Book):</span>
+<span class="gd">-    id: UUID = Field(default_factory=uuid4)</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class BookRepository(ABC):</span>
+<span class="gd">-</span>
+<span class="gd">-    @abstractmethod</span>
+<span class="gd">-    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gd">-        raise NotImplementedError</span>
+<span class="gd">-</span>
+<span class="gd">-    @abstractmethod</span>
+<span class="gd">-    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gd">-        raise NotImplementedError</span>
+<span class="gd">-</span>
+<span class="gd">-    @abstractmethod</span>
+<span class="gd">-    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gd">-        raise NotImplementedError</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class InMemoryBookRepository(BookRepository):</span>
+<span class="gd">-    books = dict()  # this sets a class-level attribute, common to all instances of `InMemoryBooksRepository`</span>
+<span class="gd">-</span>
+<span class="gd">-    def add(self, new_book: Book) -&gt; BookInDB:</span>
+<span class="gd">-        if not isinstance(new_book, Book):</span>
+<span class="gd">-            raise ValueError(&quot;This repository only accepts Book objects.&quot;)</span>
+<span class="gd">-        book = BookInDB(**new_book.dict())</span>
+<span class="gd">-        self.books[book.id] = book</span>
+<span class="gd">-        return book</span>
+<span class="gd">-</span>
+<span class="gd">-    def get(self, book_id: UUID) -&gt; Optional[BookInDB]:</span>
+<span class="gd">-        return self.books.get(book_id, None)</span>
+<span class="gd">-</span>
+<span class="gd">-    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gd">-        return [book for book_id, book in self.books.items()]</span>
+<span class="gi">+from tests.repositories import InMemoryBookRepository</span>
+<span class="gi">+from tests.schemas import Book</span>
+
+
+ def test_in_memory_repository_created_successfully():
+     repo = InMemoryBookRepository()
+     assert type(repo) == InMemoryBookRepository
+
+
+ def test_in_memory_repository_initially_empty_successfully():
+     repo = InMemoryBookRepository()
+     items = repo.list()
+     assert len(items) == 0
+
+
+<span class="gd">-@pytest.fixture()</span>
+<span class="gd">-def a_book() -&gt; Book:</span>
+<span class="gd">-    return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+ def test_add_valid_data_to_in_memory_repository_successfully(a_book):
+<span class="gd">-    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+     repo.add(a_book)
+     items = repo.list()
+     assert len(items) == 1
+     assert isinstance(items[0], Book)
+     assert items[0].title == a_book.title
+     assert items[0].author == a_book.author
+
+
+ def test_add_invalid_data_to_n_memory_repository_raises_exception():
+<span class="gd">-    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+     a_dictionary = dict(title=&quot;Foo&quot;, author=&quot;Boo&quot;)
+     with pytest.raises(ValueError):
+         repo.add(a_dictionary)
+
+     items = repo.list()
+     assert len(items) == 0
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_get_book_by_id_from_in_memory_repository_successfully(a_book, another_book):</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    book1 = repo.add(a_book)</span>
+<span class="gi">+    book2 = repo.add(another_book)</span>
+<span class="gi">+</span>
+<span class="gi">+    response1 = repo.get(book_id=book1.id)</span>
+<span class="gi">+    assert response1 == book1</span>
+<span class="gi">+    assert response1.title == a_book.title</span>
+<span class="gi">+</span>
+<span class="gi">+    response2 = repo.get(book_id=book2.id)</span>
+<span class="gi">+    assert response2 == book2</span>
+<span class="gi">+    assert response2.title == another_book.title</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_get_book_by_id_from_in_memo_repository_with_invalid_id_returns_none(a_book):</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    repo.add(a_book)</span>
+<span class="gi">+</span>
+<span class="gi">+    invalid_id = UUID(&#39;00000000-0000-0000-0000-000000000000&#39;)</span>
+<span class="gi">+    response1 = repo.get(book_id=invalid_id)</span>
+<span class="gi">+    assert response1 is None</span>
+</code></pre></div>
+
+
+<p>Add some extra tests to check the get function </p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,60 +1,112 @@</span>
+
+<span class="gd">-from uuid import UUID</span>
+<span class="gi">+from abc import ABC, abstractmethod</span>
+<span class="gi">+from typing import List, Optional</span>
+<span class="gi">+from uuid import UUID, uuid4</span>
+
+ import pytest
+<span class="gi">+from pydantic import BaseModel, Field</span>
+
+<span class="gd">-from tests.repositories import InMemoryBookRepository</span>
+<span class="gd">-from tests.schemas import Book</span>
+<span class="gi">+</span>
+<span class="gi">+class Book(BaseModel):</span>
+<span class="gi">+    title: str</span>
+<span class="gi">+    author: str</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookInDB(Book):</span>
+<span class="gi">+    id: UUID = Field(default_factory=uuid4)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookRepository(ABC):</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class InMemoryBookRepository(BookRepository):</span>
+<span class="gi">+    def __init__(self):</span>
+<span class="gi">+        self.books = dict()</span>
+<span class="gi">+</span>
+<span class="gi">+    def add(self, new_book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        if not isinstance(new_book, Book):</span>
+<span class="gi">+            raise ValueError(&quot;This repository only accepts Book objects.&quot;)</span>
+<span class="gi">+        book = BookInDB(**new_book.dict())</span>
+<span class="gi">+        self.books[book.id] = book</span>
+<span class="gi">+        return book</span>
+<span class="gi">+</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; Optional[BookInDB]:</span>
+<span class="gi">+        return self.books.get(book_id, None)</span>
+<span class="gi">+</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gi">+        return [book for book_id, book in self.books.items()]</span>
+
+
+ def test_in_memory_repository_created_successfully():
+     repo = InMemoryBookRepository()
+     assert type(repo) == InMemoryBookRepository
+
+
+ def test_in_memory_repository_initially_empty_successfully():
+     repo = InMemoryBookRepository()
+     items = repo.list()
+     assert len(items) == 0
+
+
+<span class="gi">+@pytest.fixture()</span>
+<span class="gi">+def a_book() -&gt; Book:</span>
+<span class="gi">+    return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture()</span>
+<span class="gi">+def another_book() -&gt; Book:</span>
+<span class="gi">+    return Book(title=&quot;Another nice title&quot;, author=&quot;Jane Boo&quot;)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+ def test_add_valid_data_to_in_memory_repository_successfully(a_book):
+<span class="gd">-    repo = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+     repo.add(a_book)
+     items = repo.list()
+     assert len(items) == 1
+     assert isinstance(items[0], Book)
+     assert items[0].title == a_book.title
+     assert items[0].author == a_book.author
+
+
+ def test_add_invalid_data_to_n_memory_repository_raises_exception():
+<span class="gd">-    repo = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+     a_dictionary = dict(title=&quot;Foo&quot;, author=&quot;Boo&quot;)
+     with pytest.raises(ValueError):
+         repo.add(a_dictionary)
+
+     items = repo.list()
+     assert len(items) == 0
+
+
+ def test_get_book_by_id_from_in_memory_repository_successfully(a_book, another_book):
+<span class="gd">-    repo = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+     book1 = repo.add(a_book)
+     book2 = repo.add(another_book)
+
+     response1 = repo.get(book_id=book1.id)
+     assert response1 == book1
+     assert response1.title == a_book.title
+
+     response2 = repo.get(book_id=book2.id)
+     assert response2 == book2
+     assert response2.title == another_book.title
+
+
+ def test_get_book_by_id_from_in_memo_repository_with_invalid_id_returns_none(a_book):
+<span class="gd">-    repo = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    repo = InMemoryBookRepository()</span>
+     repo.add(a_book)
+
+     invalid_id = UUID(&#39;00000000-0000-0000-0000-000000000000&#39;)
+     response1 = repo.get(book_id=invalid_id)
+     assert response1 is None
+</code></pre></div>
+
+
+<h2 id="improving-tests-fixtures">Improving Tests: Fixtures</h2>
+<p>For those tests, we have defined a fixture function to create new <code>Book</code> instances for test purposes. 
+Given that we know that we'll need to do this again and again in future tests, what we can do is to move those fixtures
+from <code>test_02_repositories.py</code> to <code>conftest.py</code>. <code>conftest.py</code> file is loaded everytime we run a test. </p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -52,30 +52,20 @@</span>
+
+     repo = InMemoryBookRepository()
+     assert type(repo) == InMemoryBookRepository
+
+
+ def test_in_memory_repository_initially_empty_successfully():
+     repo = InMemoryBookRepository()
+     items = repo.list()
+     assert len(items) == 0
+
+
+<span class="gd">-@pytest.fixture()</span>
+<span class="gd">-def a_book() -&gt; Book:</span>
+<span class="gd">-    return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-@pytest.fixture()</span>
+<span class="gd">-def another_book() -&gt; Book:</span>
+<span class="gd">-    return Book(title=&quot;Another nice title&quot;, author=&quot;Jane Boo&quot;)</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+ def test_add_valid_data_to_in_memory_repository_successfully(a_book):
+     repo = InMemoryBookRepository()
+     repo.add(a_book)
+     items = repo.list()
+     assert len(items) == 1
+     assert isinstance(items[0], Book)
+     assert items[0].title == a_book.title
+     assert items[0].author == a_book.author
+</code></pre></div>
+
+
+<p><strong>tests/conftest.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+import pytest</span>
+<span class="gi">+</span>
+<span class="gi">+from tests.test_02_repositories import Book</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture()</span>
+<span class="gi">+def a_book() -&gt; Book:</span>
+<span class="gi">+    return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture()</span>
+<span class="gi">+def another_book() -&gt; Book:</span>
+<span class="gi">+    return Book(title=&quot;Another nice title&quot;, author=&quot;Jane Boo&quot;)</span>
+</code></pre></div>
+
+
+<h2 id="code-refactor">Code Refactor</h2>
+<h3 id="data-schemas">Data Schemas</h3>
+<p>And we also know that we'll use the <code>Book</code> data type in future tests, so we can refactor the data schemas 
+from <code>test_02_repositories.py</code> to <code>schemas.py</code>, to clean the code and make more usable. </p>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,25 +1,17 @@</span>
+
+ from abc import ABC, abstractmethod
+ from typing import List, Optional
+<span class="gd">-from uuid import UUID, uuid4</span>
+<span class="gi">+from uuid import UUID</span>
+
+ import pytest
+<span class="gd">-from pydantic import BaseModel, Field</span>
+
+<span class="gd">-</span>
+<span class="gd">-class Book(BaseModel):</span>
+<span class="gd">-    title: str</span>
+<span class="gd">-    author: str</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class BookInDB(Book):</span>
+<span class="gd">-    id: UUID = Field(default_factory=uuid4)</span>
+<span class="gi">+from tests.schemas import Book, BookInDB</span>
+
+
+ class BookRepository(ABC):
+
+     @abstractmethod
+     def add(self, book: Book) -&gt; BookInDB:
+         raise NotImplementedError
+
+     @abstractmethod
+     def get(self, book_id: UUID) -&gt; BookInDB:
+</code></pre></div>
+
+
+<p><strong>tests/schemas.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+from uuid import UUID, uuid4</span>
+<span class="gi">+</span>
+<span class="gi">+from pydantic import BaseModel, Field</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class Book(BaseModel):</span>
+<span class="gi">+    title: str</span>
+<span class="gi">+    author: str</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookInDB(Book):</span>
+<span class="gi">+    id: UUID = Field(default_factory=uuid4)</span>
+</code></pre></div>
+
+
+<p><strong>tests/conftest.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,13 +1,13 @@</span>
+
+ import pytest
+
+<span class="gd">-from tests.test_02_repositories import Book</span>
+<span class="gi">+from tests.schemas import Book</span>
+
+
+ @pytest.fixture()
+ def a_book() -&gt; Book:
+     return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)
+
+
+ @pytest.fixture()
+ def another_book() -&gt; Book:
+     return Book(title=&quot;Another nice title&quot;, author=&quot;Jane Boo&quot;)
+</code></pre></div>
+
+
+<h3 id="repository">Repository</h3>
+<p><strong>tests/test_02_repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,94 +1,60 @@</span>
+
+<span class="gd">-from abc import ABC, abstractmethod</span>
+<span class="gd">-from typing import List, Optional</span>
+ from uuid import UUID
+
+ import pytest
+
+<span class="gd">-from tests.schemas import Book, BookInDB</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class BookRepository(ABC):</span>
+<span class="gd">-</span>
+<span class="gd">-    @abstractmethod</span>
+<span class="gd">-    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gd">-        raise NotImplementedError</span>
+<span class="gd">-</span>
+<span class="gd">-    @abstractmethod</span>
+<span class="gd">-    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gd">-        raise NotImplementedError</span>
+<span class="gd">-</span>
+<span class="gd">-    @abstractmethod</span>
+<span class="gd">-    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gd">-        raise NotImplementedError</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class InMemoryBookRepository(BookRepository):</span>
+<span class="gd">-    def __init__(self):</span>
+<span class="gd">-        self.books = dict()</span>
+<span class="gd">-</span>
+<span class="gd">-    def add(self, new_book: Book) -&gt; BookInDB:</span>
+<span class="gd">-        if not isinstance(new_book, Book):</span>
+<span class="gd">-            raise ValueError(&quot;This repository only accepts Book objects.&quot;)</span>
+<span class="gd">-        book = BookInDB(**new_book.dict())</span>
+<span class="gd">-        self.books[book.id] = book</span>
+<span class="gd">-        return book</span>
+<span class="gd">-</span>
+<span class="gd">-    def get(self, book_id: UUID) -&gt; Optional[BookInDB]:</span>
+<span class="gd">-        return self.books.get(book_id, None)</span>
+<span class="gd">-</span>
+<span class="gd">-    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gd">-        return [book for book_id, book in self.books.items()]</span>
+<span class="gi">+from tests.repositories import InMemoryBookRepository</span>
+<span class="gi">+from tests.schemas import Book</span>
+
+
+ def test_in_memory_repository_created_successfully():
+     repo = InMemoryBookRepository()
+     assert type(repo) == InMemoryBookRepository
+
+
+ def test_in_memory_repository_initially_empty_successfully():
+     repo = InMemoryBookRepository()
+     items = repo.list()
+     assert len(items) == 0
+
+
+ def test_add_valid_data_to_in_memory_repository_successfully(a_book):
+<span class="gd">-    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+     repo.add(a_book)
+     items = repo.list()
+     assert len(items) == 1
+     assert isinstance(items[0], Book)
+     assert items[0].title == a_book.title
+     assert items[0].author == a_book.author
+
+
+ def test_add_invalid_data_to_n_memory_repository_raises_exception():
+<span class="gd">-    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+     a_dictionary = dict(title=&quot;Foo&quot;, author=&quot;Boo&quot;)
+     with pytest.raises(ValueError):
+         repo.add(a_dictionary)
+
+     items = repo.list()
+     assert len(items) == 0
+
+
+ def test_get_book_by_id_from_in_memory_repository_successfully(a_book, another_book):
+<span class="gd">-    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+     book1 = repo.add(a_book)
+     book2 = repo.add(another_book)
+
+     response1 = repo.get(book_id=book1.id)
+     assert response1 == book1
+     assert response1.title == a_book.title
+
+     response2 = repo.get(book_id=book2.id)
+     assert response2 == book2
+     assert response2.title == another_book.title
+
+
+ def test_get_book_by_id_from_in_memo_repository_with_invalid_id_returns_none(a_book):
+<span class="gd">-    repo = InMemoryBookRepository()</span>
+<span class="gi">+    repo = InMemoryBookRepository(initial_books=dict())</span>
+     repo.add(a_book)
+
+     invalid_id = UUID(&#39;00000000-0000-0000-0000-000000000000&#39;)
+     response1 = repo.get(book_id=invalid_id)
+     assert response1 is None
+</code></pre></div>
+
+
+<p><strong>tests/repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+from abc import ABC, abstractmethod</span>
+<span class="gi">+from typing import List, Optional</span>
+<span class="gi">+from uuid import UUID</span>
+<span class="gi">+</span>
+<span class="gi">+from tests.schemas import Book, BookInDB</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookRepository(ABC):</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+    @abstractmethod</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gi">+        raise NotImplementedError</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class InMemoryBookRepository(BookRepository):</span>
+<span class="gi">+    books = dict()</span>
+<span class="gi">+</span>
+<span class="gi">+    def __init__(self, initial_books: dict = None):</span>
+<span class="gi">+        if initial_books is not None:</span>
+<span class="gi">+            self.books = initial_books</span>
+<span class="gi">+</span>
+<span class="gi">+    def add(self, new_book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        if not isinstance(new_book, Book):</span>
+<span class="gi">+            raise ValueError(&quot;This repository only accepts Book objects.&quot;)</span>
+<span class="gi">+        book = BookInDB(**new_book.dict())</span>
+<span class="gi">+        self.books[book.id] = book</span>
+<span class="gi">+        return book</span>
+<span class="gi">+</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; Optional[BookInDB]:</span>
+<span class="gi">+        return self.books.get(book_id, None)</span>
+<span class="gi">+</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gi">+        return [book for book_id, book in self.books.items()]</span>
+</code></pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../01.data_schemas/" title="Define Data Schemas" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Define Data Schemas
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../03.api_with_repository/" title="An API with a Repository" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                An API with a Repository
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

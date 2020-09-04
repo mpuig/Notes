@@ -1,0 +1,1065 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>SQL Repository - Marc Puig - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Marc Puig - Notes" class="md-header-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Marc Puig - Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              SQL Repository
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Marc Puig - Notes" class="md-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Marc Puig - Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="This Site" class="md-nav__link">
+      This Site
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      FastAPI Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="FastAPI Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        FastAPI Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00.up_and_running/" title="Up and Running FastAPI" class="md-nav__link">
+      Up and Running FastAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01.data_schemas/" title="Define Data Schemas" class="md-nav__link">
+      Define Data Schemas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-nav__link">
+      The Repository Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03.api_with_repository/" title="An API with a Repository" class="md-nav__link">
+      An API with a Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-nav__link">
+      The Service Layer Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        SQL Repository
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="SQL Repository" class="md-nav__link md-nav__link--active">
+      SQL Repository
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-test" class="md-nav__link">
+    First test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-fixtures" class="md-nav__link">
+    Database fixtures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-database-tables" class="md-nav__link">
+    Create Database Tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-new-book" class="md-nav__link">
+    Add a New Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-a-book" class="md-nav__link">
+    Get a Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-books-list" class="md-nav__link">
+    Get Books List
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-refactor" class="md-nav__link">
+    Code Refactor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06.settings/" title="Project Settings" class="md-nav__link">
+      Project Settings
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-test" class="md-nav__link">
+    First test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-fixtures" class="md-nav__link">
+    Database fixtures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-database-tables" class="md-nav__link">
+    Create Database Tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-new-book" class="md-nav__link">
+    Add a New Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-a-book" class="md-nav__link">
+    Get a Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-books-list" class="md-nav__link">
+    Get Books List
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-refactor" class="md-nav__link">
+    Code Refactor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>SQL Repository</h1>
+                
+                <h2 id="overview">Overview</h2>
+<p>A natural step in this journey, is to create a new repository, that uses the same interface that the 
+current being used (in-memory repository), and see that everything continues working. So, let's create
+an SQL repository, using the SQLAlchemy package to handle the database engine stuff.</p>
+<p>To start, we need to add the SQLAlchemy package to requirements.txt
+<strong>requirements.txt</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,3 +1,4 @@</span>
+
+ fastapi==0.61.0
+ pytest==6.0.1
+ requests==2.24.0
+<span class="gi">+SQLAlchemy==1.3.19</span>
+</code></pre></div>
+
+
+<p>and install it:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">pip install -r requirements.txt</span>
+</code></pre></div>
+
+
+<h2 id="example">Example</h2>
+<p>With all the necessary updates done, we continue creating a new test file:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">touch tests/test_05_sqlalchemy_repository.py</span>
+</code></pre></div>
+
+
+<h3 id="first-test">First test</h3>
+<p>Let's create an initial test, to create an sql repository and add a book. First of all, we define the 
+<code>SQLBookRepository</code> class, that inherits from the same <code>BookRepository</code> interface used by the <code>InMemoryBooksRepository</code>.
+And then, we define the initial test.</p>
+<p><strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -0,0 +1,32 @@</span>
+
+<span class="gi">+from typing import List</span>
+<span class="gi">+from uuid import UUID</span>
+<span class="gi">+</span>
+<span class="gi">+from sqlalchemy.orm import Session</span>
+<span class="gi">+</span>
+<span class="gi">+from tests.repositories import BookRepository</span>
+<span class="gi">+from tests.schemas import BookInDB, Book</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class SQLBookRepository(BookRepository):</span>
+<span class="gi">+    def __init__(self, db: Session):</span>
+<span class="gi">+        self.db = db</span>
+<span class="gi">+</span>
+<span class="gi">+    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        pass</span>
+<span class="gi">+</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gi">+        pass</span>
+<span class="gi">+</span>
+<span class="gi">+    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gi">+        pass</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_create_new_book_in_sql_repository_successfully(db_session: Session, a_book) -&gt; None:</span>
+<span class="gi">+    repo = SQLBookRepository(db_session)</span>
+<span class="gi">+    created_book = repo.add(book=a_book)</span>
+<span class="gi">+    assert created_book</span>
+<span class="gi">+    assert isinstance(created_book, BookInDB)</span>
+<span class="gi">+    assert created_book.title == a_book.title</span>
+<span class="gi">+    assert created_book.author == a_book.author</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+</code></pre></div>
+
+
+<h3 id="database-fixtures">Database fixtures</h3>
+<p>To work with a real SQL engine, we need to manage sessions, connections, and a bunch of things that sqlalchemy makes easier.
+We create a new fixture <code>db_connection</code> that creates a new instance of an sqlite engine in memory, and lasts for the entire test session.
+And then, another fixture to create a db_session for every test:</p>
+<p><strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,32 +1,48 @@</span>
+
+<span class="gi">+from contextlib import closing</span>
+ from typing import List
+ from uuid import UUID
+
+<span class="gd">-from sqlalchemy.orm import Session</span>
+<span class="gi">+import pytest</span>
+<span class="gi">+from sqlalchemy.engine import Connection, create_engine</span>
+<span class="gi">+from sqlalchemy.orm import Session, sessionmaker</span>
+
+ from tests.repositories import BookRepository
+ from tests.schemas import BookInDB, Book
+
+
+ class SQLBookRepository(BookRepository):
+     def __init__(self, db: Session):
+         self.db = db
+
+     def add(self, book: Book) -&gt; BookInDB:
+         pass
+
+     def get(self, book_id: UUID) -&gt; BookInDB:
+         pass
+
+     def list(self) -&gt; List[BookInDB]:
+         pass
+
+
+<span class="gi">+@pytest.fixture(scope=&quot;session&quot;)</span>
+<span class="gi">+def db_connection() -&gt; Connection:</span>
+<span class="gi">+    db_url = &quot;sqlite:///:memory:?check_same_thread=False&quot;</span>
+<span class="gi">+    engine = create_engine(db_url, pool_pre_ping=True)</span>
+<span class="gi">+    with engine.connect() as connection:</span>
+<span class="gi">+        yield connection</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture(scope=&quot;function&quot;)</span>
+<span class="gi">+def db_session(db_connection: Connection) -&gt; Session:</span>
+<span class="gi">+    session_maker = sessionmaker(autocommit=False, autoflush=False, bind=db_connection)</span>
+<span class="gi">+    with closing(session_maker()) as session:</span>
+<span class="gi">+        yield session</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+ def test_create_new_book_in_sql_repository_successfully(db_session: Session, a_book) -&gt; None:
+     repo = SQLBookRepository(db_session)
+     created_book = repo.add(book=a_book)
+     assert created_book
+     assert isinstance(created_book, BookInDB)
+     assert created_book.title == a_book.title
+     assert created_book.author == a_book.author
+<span class="gd">-</span>
+<span class="gd">-</span>
+</code></pre></div>
+
+
+<h3 id="create-database-tables">Create Database Tables</h3>
+<p>To work with an SQL engine, we need to define tables and column types. To do this, we use the <code>declarative</code> method of
+sqlalchemy to create a new class <code>Base</code>, from which all data models will inherit, and which can also be used
+to create and drop all the database tables for each session.</p>
+<p><strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,42 +1,58 @@</span>
+
+ from contextlib import closing
+ from typing import List
+<span class="gd">-from uuid import UUID</span>
+<span class="gi">+from uuid import UUID, uuid4</span>
+
+ import pytest
+<span class="gi">+from sqlalchemy import Column, String</span>
+ from sqlalchemy.engine import Connection, create_engine
+<span class="gi">+from sqlalchemy.ext.declarative import declarative_base</span>
+ from sqlalchemy.orm import Session, sessionmaker
+
+ from tests.repositories import BookRepository
+ from tests.schemas import BookInDB, Book
+
+
+ class SQLBookRepository(BookRepository):
+     def __init__(self, db: Session):
+         self.db = db
+
+     def add(self, book: Book) -&gt; BookInDB:
+         pass
+
+     def get(self, book_id: UUID) -&gt; BookInDB:
+         pass
+
+     def list(self) -&gt; List[BookInDB]:
+         pass
+
+
+<span class="gi">+Base = declarative_base()</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookModel(Base):</span>
+<span class="gi">+    __tablename__ = &#39;books&#39;</span>
+<span class="gi">+</span>
+<span class="gi">+    # It is not recommended to store uuid as str, but for these tests is ok</span>
+<span class="gi">+    id = Column(String, primary_key=True, index=True, default=str(uuid4()))</span>
+<span class="gi">+    title = Column(String)</span>
+<span class="gi">+    author = Column(String)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+ @pytest.fixture(scope=&quot;session&quot;)
+ def db_connection() -&gt; Connection:
+     db_url = &quot;sqlite:///:memory:?check_same_thread=False&quot;
+     engine = create_engine(db_url, pool_pre_ping=True)
+     with engine.connect() as connection:
+<span class="gi">+        Base.metadata.create_all(bind=connection)</span>
+         yield connection
+<span class="gi">+        Base.metadata.drop_all(bind=connection)</span>
+
+
+ @pytest.fixture(scope=&quot;function&quot;)
+ def db_session(db_connection: Connection) -&gt; Session:
+     session_maker = sessionmaker(autocommit=False, autoflush=False, bind=db_connection)
+     with closing(session_maker()) as session:
+         yield session
+
+
+ def test_create_new_book_in_sql_repository_successfully(db_session: Session, a_book) -&gt; None:
+</code></pre></div>
+
+
+<h3 id="add-a-new-book">Add a New Book</h3>
+<p>Next step is to write the code to add a book to the database: 
+<strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,30 +1,36 @@</span>
+
+ from contextlib import closing
+ from typing import List
+ from uuid import UUID, uuid4
+
+ import pytest
+<span class="gi">+from fastapi.encoders import jsonable_encoder</span>
+ from sqlalchemy import Column, String
+ from sqlalchemy.engine import Connection, create_engine
+ from sqlalchemy.ext.declarative import declarative_base
+ from sqlalchemy.orm import Session, sessionmaker
+
+ from tests.repositories import BookRepository
+ from tests.schemas import BookInDB, Book
+
+
+ class SQLBookRepository(BookRepository):
+     def __init__(self, db: Session):
+         self.db = db
+
+     def add(self, book: Book) -&gt; BookInDB:
+<span class="gd">-        pass</span>
+<span class="gi">+        book_data = jsonable_encoder(book)</span>
+<span class="gi">+        book = BookModel(**book_data)</span>
+<span class="gi">+        self.db.add(book)</span>
+<span class="gi">+        self.db.commit()</span>
+<span class="gi">+        self.db.refresh(book)</span>
+<span class="gi">+        return BookInDB(**book.__dict__)</span>
+
+     def get(self, book_id: UUID) -&gt; BookInDB:
+         pass
+
+     def list(self) -&gt; List[BookInDB]:
+         pass
+
+
+ Base = declarative_base()
+</code></pre></div>
+
+
+<h3 id="get-a-book">Get a Book</h3>
+<p>Let's write a test to fetch information from the database:
+<strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -61,10 +61,21 @@</span>
+
+         yield session
+
+
+ def test_create_new_book_in_sql_repository_successfully(db_session: Session, a_book) -&gt; None:
+     repo = SQLBookRepository(db_session)
+     created_book = repo.add(book=a_book)
+     assert created_book
+     assert isinstance(created_book, BookInDB)
+     assert created_book.title == a_book.title
+     assert created_book.author == a_book.author
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_get_book_from_sql_repository_successfully(db_session: Session, a_book) -&gt; None:</span>
+<span class="gi">+    repo = SQLBookRepository(db_session)</span>
+<span class="gi">+    created_book = repo.add(book=a_book)</span>
+<span class="gi">+    book_from_db = repo.get(book_id=created_book.id)</span>
+<span class="gi">+    assert book_from_db</span>
+<span class="gi">+    assert isinstance(book_from_db, BookInDB)</span>
+<span class="gi">+    assert created_book.id == book_from_db.id</span>
+<span class="gi">+    assert a_book.title == book_from_db.title</span>
+<span class="gi">+    assert a_book.author == book_from_db.author</span>
+</code></pre></div>
+
+
+<p>And to implmemet the <code>get</code> method to make the test work:
+<strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -19,21 +19,22 @@</span>
+
+
+     def add(self, book: Book) -&gt; BookInDB:
+         book_data = jsonable_encoder(book)
+         book = BookModel(**book_data)
+         self.db.add(book)
+         self.db.commit()
+         self.db.refresh(book)
+         return BookInDB(**book.__dict__)
+
+     def get(self, book_id: UUID) -&gt; BookInDB:
+<span class="gd">-        pass</span>
+<span class="gi">+        book = self.db.query(BookModel).filter(BookModel.id == str(book_id)).first()</span>
+<span class="gi">+        return BookInDB(**book.__dict__)</span>
+
+     def list(self) -&gt; List[BookInDB]:
+         pass
+
+
+ Base = declarative_base()
+
+
+ class BookModel(Base):
+     __tablename__ = &#39;books&#39;
+</code></pre></div>
+
+
+<h3 id="get-books-list">Get Books List</h3>
+<p>And finally, let's do the same for a list of books:
+<strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -22,32 +22,33 @@</span>
+
+         book = BookModel(**book_data)
+         self.db.add(book)
+         self.db.commit()
+         self.db.refresh(book)
+         return BookInDB(**book.__dict__)
+
+     def get(self, book_id: UUID) -&gt; BookInDB:
+         book = self.db.query(BookModel).filter(BookModel.id == str(book_id)).first()
+         return BookInDB(**book.__dict__)
+
+<span class="gd">-    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gd">-        pass</span>
+<span class="gi">+    def list(self, skip=0, offset=5) -&gt; List[BookInDB]:</span>
+<span class="gi">+        books = self.db.query(BookModel).offset(skip).limit(offset).all()</span>
+<span class="gi">+        return [BookInDB(**book.__dict__) for book in books]</span>
+
+
+ Base = declarative_base()
+
+
+ class BookModel(Base):
+     __tablename__ = &#39;books&#39;
+
+     # It is not recommended to store uuid as str, but for these tests is ok
+<span class="gd">-    id = Column(String, primary_key=True, index=True, default=str(uuid4()))</span>
+<span class="gi">+    id = Column(String, primary_key=True, index=True, default=lambda x: str(uuid4()))</span>
+     title = Column(String)
+     author = Column(String)
+
+
+ @pytest.fixture(scope=&quot;session&quot;)
+ def db_connection() -&gt; Connection:
+     db_url = &quot;sqlite:///:memory:?check_same_thread=False&quot;
+     engine = create_engine(db_url, pool_pre_ping=True)
+     with engine.connect() as connection:
+         Base.metadata.create_all(bind=connection)
+<span class="gu">@@ -73,10 +74,21 @@</span>
+
+
+ def test_get_book_from_sql_repository_successfully(db_session: Session, a_book) -&gt; None:
+     repo = SQLBookRepository(db_session)
+     created_book = repo.add(book=a_book)
+     book_from_db = repo.get(book_id=created_book.id)
+     assert book_from_db
+     assert isinstance(book_from_db, BookInDB)
+     assert created_book.id == book_from_db.id
+     assert a_book.title == book_from_db.title
+     assert a_book.author == book_from_db.author
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_get_list_of_books_successfully(db_session: Session) -&gt; None:</span>
+<span class="gi">+    repo = SQLBookRepository(db_session)</span>
+<span class="gi">+    for book_id in range(0, 25):</span>
+<span class="gi">+        book = Book(title=f&quot;title {book_id}&quot;, author=f&quot;author {book_id}&quot;)</span>
+<span class="gi">+        repo.add(book=book)</span>
+<span class="gi">+</span>
+<span class="gi">+    books_from_db = repo.list()</span>
+<span class="gi">+    assert books_from_db</span>
+<span class="gi">+    assert len(books_from_db) == 5</span>
+</code></pre></div>
+
+
+<h2 id="code-refactor">Code Refactor</h2>
+<p>With all the tests going green, we can do the usual refactors to move the Book Model to a new file <code>models.py</code>
+ and the <code>SQLBookRepository</code> class to the existing <code>repositories.py</code>
+<strong>tests/models.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+from uuid import uuid4</span>
+<span class="gi">+</span>
+<span class="gi">+from sqlalchemy import Column, String</span>
+<span class="gi">+from sqlalchemy.ext.declarative import declarative_base</span>
+<span class="gi">+</span>
+<span class="gi">+Base = declarative_base()</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class BookModel(Base):</span>
+<span class="gi">+    __tablename__ = &#39;books&#39;</span>
+<span class="gi">+</span>
+<span class="gi">+    # It is not recommended to store uuid as str, but for these tests is ok</span>
+<span class="gi">+    id = Column(String, primary_key=True, index=True, default=lambda x: str(uuid4()))</span>
+<span class="gi">+    title = Column(String)</span>
+<span class="gi">+    author = Column(String)</span>
+</code></pre></div>
+
+
+<p><strong>tests/repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,14 +1,18 @@</span>
+
+ from abc import ABC, abstractmethod
+ from typing import List, Optional
+ from uuid import UUID
+
+<span class="gi">+from fastapi.encoders import jsonable_encoder</span>
+<span class="gi">+from sqlalchemy.orm import Session</span>
+<span class="gi">+</span>
+<span class="gi">+from tests.models import BookModel</span>
+ from tests.schemas import Book, BookInDB
+
+
+ class BookRepository(ABC):
+
+     @abstractmethod
+     def add(self, book: Book) -&gt; BookInDB:
+         raise NotImplementedError
+
+     @abstractmethod
+<span class="gu">@@ -32,10 +36,31 @@</span>
+
+             raise ValueError(&quot;This repository only accepts Book objects.&quot;)
+         book = BookInDB(**new_book.dict())
+         self.books[book.id] = book
+         return book
+
+     def get(self, book_id: UUID) -&gt; Optional[BookInDB]:
+         return self.books.get(book_id, None)
+
+     def list(self, skip=0, offset=5) -&gt; List[BookInDB]:
+         return list(self.books.values())[skip * offset:(skip + 1) * offset]
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class SQLBookRepository(BookRepository):</span>
+<span class="gi">+    def __init__(self, db: Session):</span>
+<span class="gi">+        self.db = db</span>
+<span class="gi">+</span>
+<span class="gi">+    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gi">+        book_data = jsonable_encoder(book)</span>
+<span class="gi">+        book = BookModel(**book_data)</span>
+<span class="gi">+        self.db.add(book)</span>
+<span class="gi">+        self.db.commit()</span>
+<span class="gi">+        self.db.refresh(book)</span>
+<span class="gi">+        return BookInDB(**book.__dict__)</span>
+<span class="gi">+</span>
+<span class="gi">+    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gi">+        book = self.db.query(BookModel).filter(BookModel.id == str(book_id)).first()</span>
+<span class="gi">+        return BookInDB(**book.__dict__)</span>
+<span class="gi">+</span>
+<span class="gi">+    def list(self, skip=0, offset=5) -&gt; List[BookInDB]:</span>
+<span class="gi">+        books = self.db.query(BookModel).offset(skip).limit(offset).all()</span>
+<span class="gi">+        return [BookInDB(**book.__dict__) for book in books]</span>
+</code></pre></div>
+
+
+<p><strong>tests/test_05_sqlalchemy_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,56 +1,19 @@</span>
+
+ from contextlib import closing
+<span class="gd">-from typing import List</span>
+<span class="gd">-from uuid import UUID, uuid4</span>
+
+ import pytest
+<span class="gd">-from fastapi.encoders import jsonable_encoder</span>
+<span class="gd">-from sqlalchemy import Column, String</span>
+ from sqlalchemy.engine import Connection, create_engine
+<span class="gd">-from sqlalchemy.ext.declarative import declarative_base</span>
+ from sqlalchemy.orm import Session, sessionmaker
+
+<span class="gd">-from tests.repositories import BookRepository</span>
+<span class="gi">+from tests.models import Base</span>
+<span class="gi">+from tests.repositories import SQLBookRepository</span>
+ from tests.schemas import BookInDB, Book
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class SQLBookRepository(BookRepository):</span>
+<span class="gd">-    def __init__(self, db: Session):</span>
+<span class="gd">-        self.db = db</span>
+<span class="gd">-</span>
+<span class="gd">-    def add(self, book: Book) -&gt; BookInDB:</span>
+<span class="gd">-        book_data = jsonable_encoder(book)</span>
+<span class="gd">-        book = BookModel(**book_data)</span>
+<span class="gd">-        self.db.add(book)</span>
+<span class="gd">-        self.db.commit()</span>
+<span class="gd">-        self.db.refresh(book)</span>
+<span class="gd">-        return BookInDB(**book.__dict__)</span>
+<span class="gd">-</span>
+<span class="gd">-    def get(self, book_id: UUID) -&gt; BookInDB:</span>
+<span class="gd">-        book = self.db.query(BookModel).filter(BookModel.id == str(book_id)).first()</span>
+<span class="gd">-        return BookInDB(**book.__dict__)</span>
+<span class="gd">-</span>
+<span class="gd">-    def list(self, skip=0, offset=5) -&gt; List[BookInDB]:</span>
+<span class="gd">-        books = self.db.query(BookModel).offset(skip).limit(offset).all()</span>
+<span class="gd">-        return [BookInDB(**book.__dict__) for book in books]</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-Base = declarative_base()</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-class BookModel(Base):</span>
+<span class="gd">-    __tablename__ = &#39;books&#39;</span>
+<span class="gd">-</span>
+<span class="gd">-    # It is not recommended to store uuid as str, but for these tests is ok</span>
+<span class="gd">-    id = Column(String, primary_key=True, index=True, default=lambda x: str(uuid4()))</span>
+<span class="gd">-    title = Column(String)</span>
+<span class="gd">-    author = Column(String)</span>
+
+
+ @pytest.fixture(scope=&quot;session&quot;)
+ def db_connection() -&gt; Connection:
+     db_url = &quot;sqlite:///:memory:?check_same_thread=False&quot;
+     engine = create_engine(db_url, pool_pre_ping=True)
+     with engine.connect() as connection:
+         Base.metadata.create_all(bind=connection)
+         yield connection
+         Base.metadata.drop_all(bind=connection)
+</code></pre></div>
+
+
+<p>That's all for now.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                The Service Layer Pattern
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../06.settings/" title="Project Settings" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Project Settings
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

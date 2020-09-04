@@ -1,0 +1,754 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>The Service Layer Pattern - Marc Puig - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Marc Puig - Notes" class="md-header-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Marc Puig - Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              The Service Layer Pattern
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Marc Puig - Notes" class="md-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Marc Puig - Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="This Site" class="md-nav__link">
+      This Site
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      FastAPI Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="FastAPI Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        FastAPI Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00.up_and_running/" title="Up and Running FastAPI" class="md-nav__link">
+      Up and Running FastAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01.data_schemas/" title="Define Data Schemas" class="md-nav__link">
+      Define Data Schemas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-nav__link">
+      The Repository Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03.api_with_repository/" title="An API with a Repository" class="md-nav__link">
+      An API with a Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        The Service Layer Pattern
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="The Service Layer Pattern" class="md-nav__link md-nav__link--active">
+      The Service Layer Pattern
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-test-and-dependency-injection" class="md-nav__link">
+    First Test and Dependency Injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-service-and-endpoint" class="md-nav__link">
+    Create Service and Endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-repository" class="md-nav__link">
+    Update Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-test-for-invalid-values" class="md-nav__link">
+    Add Test for Invalid Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-code" class="md-nav__link">
+    Fix Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05.sql_repository/" title="SQL Repository" class="md-nav__link">
+      SQL Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06.settings/" title="Project Settings" class="md-nav__link">
+      Project Settings
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-test-and-dependency-injection" class="md-nav__link">
+    First Test and Dependency Injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-service-and-endpoint" class="md-nav__link">
+    Create Service and Endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-repository" class="md-nav__link">
+    Update Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-test-for-invalid-values" class="md-nav__link">
+    Add Test for Invalid Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-code" class="md-nav__link">
+    Fix Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>The Service Layer Pattern</h1>
+                
+                <h2 id="overview">Overview</h2>
+<p>If we look at what the <a href="../03.api_with_repository/">api with the repository</a> endpoints are doing, we'll agree that 
+are very simple. But what usually happens is that business applications typically require different kinds of interfaces 
+(API, user interface, command line client, etc) to the data and the logic they implement 
+(3rd party integrations, repositories,...). </p>
+<p>The same concept used in the <a href="../02.repository_pattern/">repository pattern</a>
+to create a common interface for the data, can be used to define a common interaction with the application to 
+invoke the business logic: fetching data from the repository, validating inputs against current state,
+handling errors, etc. And most of this things don't have anything to do with having a web aPI endpoint. </p>
+<p>This is what we might call <em>orchestration layer</em> , <em>use-case layer</em> or <a href="https://martinfowler.com/eaaCatalog/serviceLayer.html"><em>service layer</em></a>.</p>
+<h2 id="example">Example</h2>
+<p>To continue with our simple examples, we'll create a service to paginate results.</p>
+<p>Let's start creating the test file, as usual: </p>
+<div class="codehilite"><pre><span></span><code><span class="err">touch tests/test_04_api_with_services_and_repository.py</span>
+</code></pre></div>
+
+
+<h3 id="first-test-and-dependency-injection">First Test and Dependency Injection</h3>
+<p>To implement the service layer, we know that we'll need a mechanism to inject the in-memory repository to the service.
+To do this, we define a function <code>get_repo_test</code>  that returns an <code>InMemoryBookRepository</code> with a list of 
+25 new books, that will be used to return paginated results.</p>
+<p>The test, overrides the app dependencies with this repository, and do a request to a new endpoint, asking for a page of results. </p>
+<p><strong>tests/test_04_api_with_services_and_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -0,0 +1,32 @@</span>
+
+<span class="gi">+import pytest</span>
+<span class="gi">+</span>
+<span class="gi">+from tests.repositories import InMemoryBookRepository</span>
+<span class="gi">+from tests.schemas import Book</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def get_repo_test() -&gt; InMemoryBookRepository:</span>
+<span class="gi">+    repo_test = InMemoryBookRepository(initial_books=dict())</span>
+<span class="gi">+    for book_id in range(0, 25):</span>
+<span class="gi">+        repo_test.add(Book(title=f&quot;title {book_id}&quot;, author=f&quot;author {book_id}&quot;))</span>
+<span class="gi">+    return repo_test</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.mark.parametrize(</span>
+<span class="gi">+    &quot;page_num, results_count, expected_status&quot;, (</span>
+<span class="gi">+        (1, 10, 200),</span>
+<span class="gi">+        (3, 5, 200),</span>
+<span class="gi">+        (5, 0, 200),</span>
+<span class="gi">+        (1000, 0, 200),</span>
+<span class="gi">+    ),</span>
+<span class="gi">+)</span>
+<span class="gi">+def test_pagination_service_successfully(app, client, page_num, results_count, expected_status) -&gt; None:</span>
+<span class="gi">+    app.dependency_overrides[InMemoryBookRepository] = get_repo_test</span>
+<span class="gi">+</span>
+<span class="gi">+    response = client.get(f&quot;/books?page_num={page_num}&quot;)</span>
+<span class="gi">+    assert response.status_code == expected_status</span>
+<span class="gi">+</span>
+<span class="gi">+    content = response.json()</span>
+<span class="gi">+    assert &quot;page&quot; in content</span>
+<span class="gi">+    assert content[&quot;page&quot;] == page_num</span>
+<span class="gi">+    assert &quot;content&quot; in content</span>
+<span class="gi">+    assert len(content[&quot;content&quot;]) == results_count</span>
+</code></pre></div>
+
+
+<p>Of course, this test fails, because the endpoint is not yet defined.</p>
+<h3 id="create-service-and-endpoint">Create Service and Endpoint</h3>
+<p>At this point, we can imagine that the new service will be used from other tests, and perhaps in the future, from a real application.
+for this reason, we create it in a new file:</p>
+<p>{git_diff_by_commit a5f556cd..8f447f5 - tests / services.py}</p>
+<p>Since we have a <code>conftest.py</code> with an app fixture, we'll continue to extend it with the new endpoint, which uses the
+previous service.</p>
+<p><strong>tests/conftest.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,19 +1,20 @@</span>
+
+ from typing import List
+ from uuid import UUID
+
+ import pytest
+ from fastapi import FastAPI, Depends
+ from starlette.testclient import TestClient
+
+ from tests.repositories import InMemoryBookRepository
+ from tests.schemas import Book
+<span class="gi">+from tests.services import BookPaginationService</span>
+
+
+ @pytest.fixture
+ def app():
+     app = FastAPI()
+
+     @app.get(&quot;/&quot;, name=&quot;books:get-all-books&quot;)
+     def get_all_books(
+         books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)
+     ) -&gt; List[Book]:
+<span class="gu">@@ -29,20 +30,28 @@</span>
+
+         return book
+
+     @app.post(&quot;/&quot;, name=&quot;books:create-book&quot;, status_code=201)
+     def create_new_book(
+         book: Book,
+         books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)
+     ) -&gt; Book:
+         book_db = books_repo.add(book)
+         return book_db
+
+<span class="gi">+    @app.get(&quot;/books&quot;)</span>
+<span class="gi">+    def get_paginated_books(</span>
+<span class="gi">+        page_num: int = 1,</span>
+<span class="gi">+        book_pagination: BookPaginationService = Depends(BookPaginationService),</span>
+<span class="gi">+    ):</span>
+<span class="gi">+        paginated_books = book_pagination.get_page(num=page_num)</span>
+<span class="gi">+        return paginated_books</span>
+<span class="gi">+</span>
+     return app
+
+
+ @pytest.fixture
+ def client(app):
+     return TestClient(app)
+
+
+ @pytest.fixture()
+ def a_book() -&gt; Book:
+</code></pre></div>
+
+
+<h3 id="update-repository">Update Repository</h3>
+<p>We need that our repository returns only the requested items. To do this, we modify the <code>list</code> 
+method to accept pagination params:</p>
+<p><strong>tests/repositories.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -30,12 +30,12 @@</span>
+
+     def add(self, new_book: Book) -&gt; BookInDB:
+         if not isinstance(new_book, Book):
+             raise ValueError(&quot;This repository only accepts Book objects.&quot;)
+         book = BookInDB(**new_book.dict())
+         self.books[book.id] = book
+         return book
+
+     def get(self, book_id: UUID) -&gt; Optional[BookInDB]:
+         return self.books.get(book_id, None)
+
+<span class="gd">-    def list(self) -&gt; List[BookInDB]:</span>
+<span class="gd">-        return [book for book_id, book in self.books.items()]</span>
+<span class="gi">+    def list(self, skip=0, offset=5) -&gt; List[BookInDB]:</span>
+<span class="gi">+        return list(self.books.values())[skip * offset:(skip + 1) * offset]</span>
+</code></pre></div>
+
+
+<h3 id="add-test-for-invalid-values">Add Test for Invalid Values</h3>
+<p>We need to be sure that the system is as robust as possible, and that handle correctly invalid values for pagination requests.
+Let's add a test to check invalid values, using the parametrized decorator:</p>
+<p><strong>tests/test_04_api_with_services_and_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -23,10 +23,25 @@</span>
+
+     app.dependency_overrides[InMemoryBookRepository] = get_repo_test
+
+     response = client.get(f&quot;/books?page_num={page_num}&quot;)
+     assert response.status_code == expected_status
+
+     content = response.json()
+     assert &quot;page&quot; in content
+     assert content[&quot;page&quot;] == page_num
+     assert &quot;content&quot; in content
+     assert len(content[&quot;content&quot;]) == results_count
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.mark.parametrize(</span>
+<span class="gi">+    &quot;page_num, expected_status&quot;, (</span>
+<span class="gi">+        (-1, 422),</span>
+<span class="gi">+        (0, 422),</span>
+<span class="gi">+        (&#39;0&#39;, 422),</span>
+<span class="gi">+        (&#39;a&#39;, 422),</span>
+<span class="gi">+    ),</span>
+<span class="gi">+)</span>
+<span class="gi">+def test_pagination_service_fails(app, client, page_num, expected_status) -&gt; None:</span>
+<span class="gi">+    app.dependency_overrides[InMemoryBookRepository] = get_repo_test</span>
+<span class="gi">+</span>
+<span class="gi">+    response = client.get(f&quot;/books?page_num={page_num}&quot;)</span>
+<span class="gi">+    assert response.status_code == expected_status</span>
+</code></pre></div>
+
+
+<h3 id="fix-code">Fix Code</h3>
+<p>With the previous test, we realize that some invalid input values are accepted. Let's fix it adding input data validation to the endpoint:</p>
+<p><strong>tests/conftest.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,15 +1,16 @@</span>
+
+ from typing import List
+ from uuid import UUID
+
+ import pytest
+ from fastapi import FastAPI, Depends
+<span class="gi">+from pydantic.types import PositiveInt</span>
+ from starlette.testclient import TestClient
+
+ from tests.repositories import InMemoryBookRepository
+ from tests.schemas import Book
+ from tests.services import BookPaginationService
+
+
+ @pytest.fixture
+ def app():
+     app = FastAPI()
+<span class="gu">@@ -32,21 +33,21 @@</span>
+
+     @app.post(&quot;/&quot;, name=&quot;books:create-book&quot;, status_code=201)
+     def create_new_book(
+         book: Book,
+         books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)
+     ) -&gt; Book:
+         book_db = books_repo.add(book)
+         return book_db
+
+     @app.get(&quot;/books&quot;)
+     def get_paginated_books(
+<span class="gd">-        page_num: int = 1,</span>
+<span class="gi">+        page_num: PositiveInt = 1,</span>
+         book_pagination: BookPaginationService = Depends(BookPaginationService),
+     ):
+         paginated_books = book_pagination.get_page(num=page_num)
+         return paginated_books
+
+     return app
+
+
+ @pytest.fixture
+ def client(app):
+</code></pre></div>
+
+
+<p>All green!</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../03.api_with_repository/" title="An API with a Repository" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                An API with a Repository
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../05.sql_repository/" title="SQL Repository" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                SQL Repository
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

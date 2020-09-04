@@ -1,0 +1,673 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>Define Data Schemas - Marc Puig - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-objects" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Marc Puig - Notes" class="md-header-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Marc Puig - Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Define Data Schemas
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Marc Puig - Notes" class="md-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Marc Puig - Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="This Site" class="md-nav__link">
+      This Site
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      FastAPI Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="FastAPI Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        FastAPI Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00.up_and_running/" title="Up and Running FastAPI" class="md-nav__link">
+      Up and Running FastAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Define Data Schemas
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Define Data Schemas" class="md-nav__link md-nav__link--active">
+      Define Data Schemas
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-objects" class="md-nav__link">
+    Data Objects
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pydantic" class="md-nav__link">
+    Pydantic
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improving-tests-parametrize" class="md-nav__link">
+    Improving Tests: Parametrize
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-nav__link">
+      The Repository Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03.api_with_repository/" title="An API with a Repository" class="md-nav__link">
+      An API with a Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-nav__link">
+      The Service Layer Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05.sql_repository/" title="SQL Repository" class="md-nav__link">
+      SQL Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06.settings/" title="Project Settings" class="md-nav__link">
+      Project Settings
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-objects" class="md-nav__link">
+    Data Objects
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pydantic" class="md-nav__link">
+    Pydantic
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improving-tests-parametrize" class="md-nav__link">
+    Improving Tests: Parametrize
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Define Data Schemas</h1>
+                
+                <p>Let's start using the <a href="../00.up_and_running/">TDD methodology</a> in a more concrete way, 
+to see how data schemas can be defined using <a href="https://github.com/samuelcolvin/pydantic/">pydantic</a>.</p>
+<h2 id="data-objects">Data Objects</h2>
+<p>Data structures are the fundamental constructs around which we build our programs. 
+Each data structure provides a particular way of organizing data so it can be accessed efficiently,
+depending on the use case. Python ships with an extensive set of data structures in its standard library:
+lists, tuples, dictionaries, dataclasses, etc.</p>
+<p>Classes allow you to define reusable blueprints for data objects to ensure each object provides the same set of fields.</p>
+<p>Using regular Python classes as record data types is feasible, but it also takes manual work to get the convenience 
+features of other implementations. For example, adding new fields to the <code>__init__</code> constructor is verbose and takes time.  </p>
+<p>Writing a custom class is a great option whenever you’d like to add business logic and behavior to your record 
+objects using methods. However, this means that these objects are technically no longer plain data objects.</p>
+<p>Data classes are available in Python 3.7 and above. They provide an excellent alternative to defining your own data storage classes from scratch.</p>
+<p>And pydantic is built on top of dataclasses (TB confirmed).</p>
+<h3 id="pydantic">Pydantic</h3>
+<p>From Pydantic website:</p>
+<blockquote>
+<p>Data validation and settings management using python type annotations.</p>
+<p>pydantic enforces type hints at runtime, and provides user friendly errors when data is invalid.</p>
+<p>Define how data should be in pure, canonical python; validate it with pydantic.</p>
+</blockquote>
+<h2 id="example">Example</h2>
+<p>We want a kind of object, capable to store structured information, and independent of the database engine.</p>
+<p>Let's define some tests to create our first Schema.</p>
+<p>First of all, let's create a new test file:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">touch tests/test_01_data_schemas.py </span>
+</code></pre></div>
+
+
+<p>And let's define what do I want to do:
+- I want to have a data schema to define books sold in an online store. 
+- A book has a title, an author, a price, and a publish year and (this is optional).</p>
+<p>Define the assumptions I want to check. This code won't work, because the Book data schema is not defined. 
+But writing the tests helps us to think about what fields are needed. </p>
+<p><strong>tests/test_01_data_schemas.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+import pytest</span>
+<span class="gi">+from pydantic import ValidationError</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_create_book_with_valid_schema_successfully() -&gt; None:</span>
+<span class="gi">+    book = Book(title=&quot;This is a nice book&quot;, author=&quot;Jane Appleseed&quot;, price=18.99, year=1856)</span>
+<span class="gi">+    assert book.title == &quot;This is a nice book&quot;</span>
+<span class="gi">+    assert book.author == &quot;Jane Appleseed&quot;</span>
+<span class="gi">+    assert book.year == 1856</span>
+<span class="gi">+    assert book.price == &quot;Jane Appleseed&quot;</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_create_book_with_invalid_schema_raises_exception() -&gt; None:</span>
+<span class="gi">+    with pytest.raises(ValidationError):</span>
+<span class="gi">+        Book(author=&quot;Lewis Carroll&quot;, price=18.99),</span>
+</code></pre></div>
+
+
+<p>At this point, I can define a data class for the books. </p>
+<p><strong>tests/test_01_data_schemas.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,12 +1,21 @@</span>
+
+<span class="gi">+from typing import Optional</span>
+<span class="gi">+</span>
+ import pytest
+<span class="gd">-from pydantic import ValidationError</span>
+<span class="gi">+from pydantic import BaseModel, constr, confloat, ValidationError</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+class Book(BaseModel):</span>
+<span class="gi">+    title: str</span>
+<span class="gi">+    author: constr(min_length=1, regex=&quot;[A-Za-z ,.&#39;-]+$&quot;)</span>
+<span class="gi">+    price: confloat(gt=0)</span>
+<span class="gi">+    year: Optional[int]</span>
+
+
+ def test_create_book_with_valid_schema_successfully() -&gt; None:
+     book = Book(title=&quot;This is a nice book&quot;, author=&quot;Jane Appleseed&quot;, price=18.99, year=1856)
+     assert book.title == &quot;This is a nice book&quot;
+     assert book.author == &quot;Jane Appleseed&quot;
+     assert book.year == 1856
+     assert book.price == &quot;Jane Appleseed&quot;
+</code></pre></div>
+
+
+<p>Some things worth to mention here about the field data types:</p>
+<ul>
+<li><code>author</code> has been defined as <code>constr</code> instead of <code>str</code>. Pydantic defins numerous commont ypes as 
+"<a href="https://pydantic-docs.helpmanual.io/usage/types/#constrained-types">Constrained Types</a>" and allow to add validations
+ at the definition level. In this case I defined a minimum length and that the input value must match the regular expression.</li>
+<li>The same happens with <code>price</code>, defined as <code>confloat</code>. In this case, the float value must be positive.</li>
+<li>And finally, the <code>year</code>, which is defined as an optional integer.</li>
+</ul>
+<p>More information about the validation types can be found in the pydantic page about 
+"<a href="https://pydantic-docs.helpmanual.io/usage/types/">Field Types</a>"</p>
+<h2 id="improving-tests-parametrize">Improving Tests: Parametrize</h2>
+<p>In the next step, I'll use a new concept very useful to write tests using pytest: </p>
+<p><a href="https://docs.pytest.org/en/stable/parametrize.html">Parametrization</a>.</p>
+<p>parametrization allows to define a set of arguments and fixtures to be run for the same test function, 
+facilitating the test repetition using multiple and different values. Let's see in our code: </p>
+<p><strong>tests/test_01_data_schemas.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -4,21 +4,44 @@</span>
+
+ from pydantic import BaseModel, constr, confloat, ValidationError
+
+
+ class Book(BaseModel):
+     title: str
+     author: constr(min_length=1, regex=&quot;[A-Za-z ,.&#39;-]+$&quot;)
+     price: confloat(gt=0)
+     year: Optional[int]
+
+
+<span class="gd">-def test_create_book_with_valid_schema_successfully() -&gt; None:</span>
+<span class="gd">-    book = Book(title=&quot;This is a nice book&quot;, author=&quot;Jane Appleseed&quot;, price=18.99, year=1856)</span>
+<span class="gd">-    assert book.title == &quot;This is a nice book&quot;</span>
+<span class="gd">-    assert book.author == &quot;Jane Appleseed&quot;</span>
+<span class="gd">-    assert book.year == 1856</span>
+<span class="gd">-    assert book.price == &quot;Jane Appleseed&quot;</span>
+<span class="gi">+@pytest.mark.parametrize(</span>
+<span class="gi">+    &quot;valid_schema&quot;, (</span>
+<span class="gi">+        dict(title=&quot;This is a nice book&quot;, author=&quot;Jane Appleseed&quot;, price=18.99, year=1856),</span>
+<span class="gi">+        dict(title=&quot;This is another nice book&quot;, author=&quot;John Smith&quot;, price=18.99)</span>
+<span class="gi">+    ),</span>
+<span class="gi">+)</span>
+<span class="gi">+def test_create_book_with_valid_schema_successfully(valid_schema: dict) -&gt; None:</span>
+<span class="gi">+    book = Book(</span>
+<span class="gi">+        title=valid_schema.get(&quot;title&quot;),</span>
+<span class="gi">+        author=valid_schema.get(&quot;author&quot;),</span>
+<span class="gi">+        year=valid_schema.get(&quot;year&quot;),</span>
+<span class="gi">+        price=valid_schema.get(&quot;price&quot;),</span>
+<span class="gi">+    )</span>
+<span class="gi">+    assert book.title == valid_schema.get(&quot;title&quot;)</span>
+<span class="gi">+    assert book.author == valid_schema.get(&quot;author&quot;)</span>
+<span class="gi">+    assert book.year == valid_schema.get(&quot;year&quot;)</span>
+<span class="gi">+    assert book.price == valid_schema.get(&quot;price&quot;)</span>
+
+
+<span class="gd">-def test_create_book_with_invalid_schema_raises_exception() -&gt; None:</span>
+<span class="gi">+@pytest.mark.parametrize(</span>
+<span class="gi">+    &quot;invalid_schema&quot;, (</span>
+<span class="gi">+        dict(author=&quot;Lewis Carroll&quot;, price=18.99),</span>
+<span class="gi">+        dict(title=&quot;Another nice book&quot;, author=&quot;Lewis Carroll&quot;),</span>
+<span class="gi">+        dict(title=&quot;Lorem ipsum&quot;, author=&quot;Lewis Carroll&quot;, price=-10.0)</span>
+<span class="gi">+    ),</span>
+<span class="gi">+)</span>
+<span class="gi">+def test_create_book_with_invalid_schema_raises_exception(invalid_schema: dict) -&gt; None:</span>
+     with pytest.raises(ValidationError):
+<span class="gd">-        Book(author=&quot;Lewis Carroll&quot;, price=18.99),</span>
+<span class="gi">+        Book(</span>
+<span class="gi">+            title=invalid_schema.get(&quot;title&quot;),</span>
+<span class="gi">+            author=invalid_schema.get(&quot;author&quot;),</span>
+<span class="gi">+            year=invalid_schema.get(&quot;year&quot;),</span>
+<span class="gi">+            price=invalid_schema.get(&quot;price&quot;),</span>
+<span class="gi">+        )</span>
+</code></pre></div>
+
+
+<p>What I did here is to add a code like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;valid_schema&quot;</span><span class="p">,</span> <span class="p">(</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;This is a nice book&quot;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Jane Appleseed&quot;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">18.99</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">1856</span><span class="p">),</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;This is another nice book&quot;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">18.99</span><span class="p">)</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+<p>at the beginning of the test function, and redefined the function signature to:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">test_create_book_with_valid_schema_successfully</span><span class="p">(</span><span class="n">valid_schema</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</code></pre></div>
+
+
+<p>adding the <code>valid_schema</code> parameter, that will get all the parametrized values defined previously.</p>
+<p>With those changes, adding a few lines, I can run the same tests with many values as I need. 
+In this case, running the tests with 2 test functions:  </p>
+<div class="codehilite"><pre><span></span><code><span class="err">pytest tests/test_01_data_schemas.py -v</span>
+</code></pre></div>
+
+
+<p>a total of 5 tests are executed:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">=======================================</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="n">starts</span><span class="w"> </span><span class="o">========================================</span><span class="w"></span>
+<span class="n">collected</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">items</span><span class="w">                                                                                  </span>
+
+<span class="n">tests</span><span class="o">/</span><span class="n">test_01_data_schemas</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="err">:</span><span class="n">test_create_book_with_valid_schema_successfully</span><span class="o">[</span><span class="n">valid_schema0</span><span class="o">]</span><span class="w"> </span><span class="n">PASSED</span><span class="w"> </span><span class="o">[</span><span class="n"> 20%</span><span class="o">]</span><span class="w"></span>
+<span class="n">tests</span><span class="o">/</span><span class="n">test_01_data_schemas</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="err">:</span><span class="n">test_create_book_with_valid_schema_successfully</span><span class="o">[</span><span class="n">valid_schema1</span><span class="o">]</span><span class="w"> </span><span class="n">PASSED</span><span class="w"> </span><span class="o">[</span><span class="n"> 40%</span><span class="o">]</span><span class="w"></span>
+<span class="n">tests</span><span class="o">/</span><span class="n">test_01_data_schemas</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="err">:</span><span class="n">test_create_book_with_invalid_schema_raises_exception</span><span class="o">[</span><span class="n">invalid_schema0</span><span class="o">]</span><span class="w"> </span><span class="n">PASSED</span><span class="w"> </span><span class="o">[</span><span class="n"> 60%</span><span class="o">]</span><span class="w"></span>
+<span class="n">tests</span><span class="o">/</span><span class="n">test_01_data_schemas</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="err">:</span><span class="n">test_create_book_with_invalid_schema_raises_exception</span><span class="o">[</span><span class="n">invalid_schema1</span><span class="o">]</span><span class="w"> </span><span class="n">PASSED</span><span class="w"> </span><span class="o">[</span><span class="n"> 80%</span><span class="o">]</span><span class="w"></span>
+<span class="n">tests</span><span class="o">/</span><span class="n">test_01_data_schemas</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="err">:</span><span class="n">test_create_book_with_invalid_schema_raises_exception</span><span class="o">[</span><span class="n">invalid_schema2</span><span class="o">]</span><span class="w"> </span><span class="n">PASSED</span><span class="w"> </span><span class="o">[</span><span class="n">100%</span><span class="o">]</span><span class="w"></span>
+
+<span class="o">========================================</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">passed</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mf">0.07</span><span class="n">s</span><span class="w"> </span><span class="o">=========================================</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>All green!</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../00.up_and_running/" title="Up and Running FastAPI" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Up and Running FastAPI
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                The Repository Pattern
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

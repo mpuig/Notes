@@ -1,0 +1,912 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>An API with a Repository - Marc Puig - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Marc Puig - Notes" class="md-header-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Marc Puig - Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              An API with a Repository
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Marc Puig - Notes" class="md-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Marc Puig - Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="This Site" class="md-nav__link">
+      This Site
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      FastAPI Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="FastAPI Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        FastAPI Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00.up_and_running/" title="Up and Running FastAPI" class="md-nav__link">
+      Up and Running FastAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01.data_schemas/" title="Define Data Schemas" class="md-nav__link">
+      Define Data Schemas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-nav__link">
+      The Repository Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        An API with a Repository
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="An API with a Repository" class="md-nav__link md-nav__link--active">
+      An API with a Repository
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-test" class="md-nav__link">
+    Initial Test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-api-endpoint" class="md-nav__link">
+    First API Endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-book" class="md-nav__link">
+    Create a New Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-invalid-data" class="md-nav__link">
+    Test Invalid Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-by-id" class="md-nav__link">
+    Get by ID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-refactor" class="md-nav__link">
+    Code Refactor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-nav__link">
+      The Service Layer Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05.sql_repository/" title="SQL Repository" class="md-nav__link">
+      SQL Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06.settings/" title="Project Settings" class="md-nav__link">
+      Project Settings
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-test" class="md-nav__link">
+    Initial Test
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-api-endpoint" class="md-nav__link">
+    First API Endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-book" class="md-nav__link">
+    Create a New Book
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-invalid-data" class="md-nav__link">
+    Test Invalid Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-by-id" class="md-nav__link">
+    Get by ID
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-refactor" class="md-nav__link">
+    Code Refactor
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>An API with a Repository</h1>
+                
+                <h2 id="overview">Overview</h2>
+<p>We know how to build a very <a href="../00.up_and_running/">simple API</a> with FastAPI and we also know 
+how to use the <a href="../02.repository_pattern/">Repository Pattern</a> to isolate repositories. Let's use them together to
+create an API with three endpoints to create a new book, get all books, and get one book given an id.</p>
+<p>For this test, we'll need to use a client to call the API endpoints, and for this reason, we need to add <code>requests</code> 
+package to the requirements file:</p>
+<p><strong>requirements.txt</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,2 +1,3 @@</span>
+
+ fastapi==0.61.0
+ pytest==6.0.1
+<span class="gi">+requests==2.24.0</span>
+</code></pre></div>
+
+
+<p>and install it:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">pip install -r requirements.txt</span>
+</code></pre></div>
+
+
+<h2 id="example">Example</h2>
+<p>First step, we need to create a new test file: </p>
+<div class="codehilite"><pre><span></span><code><span class="err">touch tests/test_03_api_with_repository.py</span>
+</code></pre></div>
+
+
+<h3 id="initial-test">Initial Test</h3>
+<p>Let's start with the more simple test: getting all books. To do it, we add an initial test:</p>
+<p><strong>tests/test_03_api_with_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -0,0 +1,21 @@</span>
+
+<span class="gi">+import pytest</span>
+<span class="gi">+from fastapi import FastAPI</span>
+<span class="gi">+from fastapi.testclient import TestClient</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture</span>
+<span class="gi">+def app():</span>
+<span class="gi">+    app = FastAPI()</span>
+<span class="gi">+</span>
+<span class="gi">+    return app</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture</span>
+<span class="gi">+def client(app):</span>
+<span class="gi">+    return TestClient(app)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_get_all_books_successfully(app, client) -&gt; None:</span>
+<span class="gi">+    url_get_books = app.url_path_for(&quot;books:get-all-books&quot;)</span>
+<span class="gi">+    response_get_books = client.get(url_get_books)</span>
+<span class="gi">+    assert response_get_books.status_code == 200</span>
+</code></pre></div>
+
+
+<h3 id="first-api-endpoint">First API Endpoint</h3>
+<p>To create the first API endpoint, we need to add a new route to handle the GET requests. Here we can see how to use
+the dependency injection to load the in-memory repository to be used from the endpoint. </p>
+<p><strong>tests/test_03_api_with_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,18 +1,30 @@</span>
+
+<span class="gi">+from typing import List</span>
+<span class="gi">+</span>
+ import pytest
+<span class="gd">-from fastapi import FastAPI</span>
+<span class="gi">+from fastapi import Depends, FastAPI</span>
+ from fastapi.testclient import TestClient
+<span class="gi">+</span>
+<span class="gi">+from tests.repositories import InMemoryBookRepository</span>
+<span class="gi">+from tests.schemas import Book</span>
+
+
+ @pytest.fixture
+ def app():
+     app = FastAPI()
+<span class="gi">+</span>
+<span class="gi">+    @app.get(&quot;/&quot;, name=&quot;books:get-all-books&quot;)</span>
+<span class="gi">+    def get_all_books(</span>
+<span class="gi">+        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gi">+    ) -&gt; List[Book]:</span>
+<span class="gi">+        books = books_repo.list()</span>
+<span class="gi">+        return books</span>
+
+     return app
+
+
+ @pytest.fixture
+ def client(app):
+     return TestClient(app)
+
+
+ def test_get_all_books_successfully(app, client) -&gt; None:
+</code></pre></div>
+
+
+<h3 id="create-a-new-book">Create a New Book</h3>
+<p>Next step is to create a test to create new books, and implement the API route to handle POST requests. This endpoint
+it also uses <code>Depends</code> to inject the repository.</p>
+<p><strong>tests/test_03_api_with_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -12,22 +12,44 @@</span>
+
+ def app():
+     app = FastAPI()
+
+     @app.get(&quot;/&quot;, name=&quot;books:get-all-books&quot;)
+     def get_all_books(
+         books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)
+     ) -&gt; List[Book]:
+         books = books_repo.list()
+         return books
+
+<span class="gi">+    @app.post(&quot;/&quot;, name=&quot;books:create-book&quot;, status_code=201)</span>
+<span class="gi">+    def create_new_book(</span>
+<span class="gi">+        book: Book,</span>
+<span class="gi">+        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gi">+    ) -&gt; Book:</span>
+<span class="gi">+        book_db = books_repo.add(book)</span>
+<span class="gi">+        return book_db</span>
+<span class="gi">+</span>
+     return app
+
+
+ @pytest.fixture
+ def client(app):
+     return TestClient(app)
+
+
+ def test_get_all_books_successfully(app, client) -&gt; None:
+     url_get_books = app.url_path_for(&quot;books:get-all-books&quot;)
+     response_get_books = client.get(url_get_books)
+     assert response_get_books.status_code == 200
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_create_valid_book_successfully(app, client, a_book) -&gt; None:</span>
+<span class="gi">+    url_create_book = app.url_path_for(&quot;books:create-book&quot;)</span>
+<span class="gi">+    response_new_book = client.post(url_create_book, json={&#39;book&#39;: a_book.dict()})</span>
+<span class="gi">+    assert response_new_book.status_code == 201</span>
+<span class="gi">+</span>
+<span class="gi">+    new_book_json = response_new_book.json()</span>
+<span class="gi">+    assert isinstance(new_book_json, dict)</span>
+<span class="gi">+</span>
+<span class="gi">+    assert &#39;id&#39; in new_book_json</span>
+<span class="gi">+    assert len(new_book_json[&#39;id&#39;]) == 36</span>
+<span class="gi">+</span>
+<span class="gi">+    assert a_book == Book(**new_book_json)</span>
+</code></pre></div>
+
+
+<h3 id="test-invalid-data">Test Invalid Data</h3>
+<p>Ok, now that we can add a new book to the repository using the API, we need to be sure that only valid data is used.
+Let's add a new test to check that an attempt to create an invalid book returns an error code.</p>
+<p><strong>tests/test_03_api_with_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -46,10 +46,17 @@</span>
+
+     response_new_book = client.post(url_create_book, json={&#39;book&#39;: a_book.dict()})
+     assert response_new_book.status_code == 201
+
+     new_book_json = response_new_book.json()
+     assert isinstance(new_book_json, dict)
+
+     assert &#39;id&#39; in new_book_json
+     assert len(new_book_json[&#39;id&#39;]) == 36
+
+     assert a_book == Book(**new_book_json)
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_invalid_create_book_raises_error(app, client) -&gt; None:</span>
+<span class="gi">+    url_create_book = app.url_path_for(&quot;books:create-book&quot;)</span>
+<span class="gi">+    empty_payload = {}</span>
+<span class="gi">+    response_new_book = client.post(url_create_book, json=empty_payload)</span>
+<span class="gi">+    assert response_new_book.status_code == 422</span>
+</code></pre></div>
+
+
+<p>It looks that everything works fine!</p>
+<h3 id="get-by-id">Get by ID</h3>
+<p>Finally, we define a new test to check the get-by-id API endpoint, and we create the route for the new GET method.</p>
+<p><strong>tests/test_03_api_with_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,30 +1,39 @@</span>
+
+ from typing import List
+<span class="gi">+from uuid import UUID</span>
+
+ import pytest
+ from fastapi import Depends, FastAPI
+ from fastapi.testclient import TestClient
+
+ from tests.repositories import InMemoryBookRepository
+ from tests.schemas import Book
+
+
+ @pytest.fixture
+ def app():
+     app = FastAPI()
+
+     @app.get(&quot;/&quot;, name=&quot;books:get-all-books&quot;)
+     def get_all_books(
+         books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)
+     ) -&gt; List[Book]:
+         books = books_repo.list()
+         return books
+<span class="gi">+</span>
+<span class="gi">+    @app.get(&quot;/{book_id}/&quot;, name=&quot;books:get-book-by-id&quot;)</span>
+<span class="gi">+    def get_book_by_id(</span>
+<span class="gi">+        book_id: UUID,</span>
+<span class="gi">+        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gi">+    ) -&gt; Book:</span>
+<span class="gi">+        book = books_repo.get(book_id=book_id)</span>
+<span class="gi">+        return book</span>
+
+     @app.post(&quot;/&quot;, name=&quot;books:create-book&quot;, status_code=201)
+     def create_new_book(
+         book: Book,
+         books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)
+     ) -&gt; Book:
+         book_db = books_repo.add(book)
+         return book_db
+
+     return app
+<span class="gu">@@ -53,10 +62,25 @@</span>
+
+     assert len(new_book_json[&#39;id&#39;]) == 36
+
+     assert a_book == Book(**new_book_json)
+
+
+ def test_invalid_create_book_raises_error(app, client) -&gt; None:
+     url_create_book = app.url_path_for(&quot;books:create-book&quot;)
+     empty_payload = {}
+     response_new_book = client.post(url_create_book, json=empty_payload)
+     assert response_new_book.status_code == 422
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_get_book_by_id_successfully(app, client, a_book, another_book) -&gt; None:</span>
+<span class="gi">+    url_create_book = app.url_path_for(&quot;books:create-book&quot;)</span>
+<span class="gi">+</span>
+<span class="gi">+    response_new_book_1 = client.post(url_create_book, json={&#39;book&#39;: a_book.dict()})</span>
+<span class="gi">+    assert response_new_book_1.status_code == 201</span>
+<span class="gi">+    book1_id = response_new_book_1.json()[&#39;id&#39;]</span>
+<span class="gi">+</span>
+<span class="gi">+    response_new_book_2 = client.post(url_create_book, json={&#39;book&#39;: another_book.dict()})</span>
+<span class="gi">+    assert response_new_book_2.status_code == 201</span>
+<span class="gi">+</span>
+<span class="gi">+    get_book_url = app.url_path_for(&quot;books:get-book-by-id&quot;, book_id=book1_id)</span>
+<span class="gi">+    response_get_book = client.get(get_book_url)</span>
+<span class="gi">+    assert a_book == Book(**response_get_book.json())</span>
+</code></pre></div>
+
+
+<p>All green!</p>
+<h2 id="code-refactor">Code Refactor</h2>
+<p>As we have seen in other cases, it's a good practice to move all the code different than a test to its own file, 
+sometimes to the <code>conftest.py</code> and only for testing, and sometimes will be to other files to be able to reuse the code
+when writing the app. In this case, we extract the fixture <code>app</code> that contains the simple FastAPI app with its routes, 
+and also the <code>client</code> fixture, to do the requests. </p>
+<p><strong>tests/test_03_api_with_repository.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,54 +1,11 @@</span>
+
+<span class="gd">-from typing import List</span>
+<span class="gd">-from uuid import UUID</span>
+<span class="gd">-</span>
+<span class="gd">-import pytest</span>
+<span class="gd">-from fastapi import Depends, FastAPI</span>
+<span class="gd">-from fastapi.testclient import TestClient</span>
+<span class="gd">-</span>
+<span class="gd">-from tests.repositories import InMemoryBookRepository</span>
+ from tests.schemas import Book
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-@pytest.fixture</span>
+<span class="gd">-def app():</span>
+<span class="gd">-    app = FastAPI()</span>
+<span class="gd">-</span>
+<span class="gd">-    @app.get(&quot;/&quot;, name=&quot;books:get-all-books&quot;)</span>
+<span class="gd">-    def get_all_books(</span>
+<span class="gd">-        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gd">-    ) -&gt; List[Book]:</span>
+<span class="gd">-        books = books_repo.list()</span>
+<span class="gd">-        return books</span>
+<span class="gd">-</span>
+<span class="gd">-    @app.get(&quot;/{book_id}/&quot;, name=&quot;books:get-book-by-id&quot;)</span>
+<span class="gd">-    def get_book_by_id(</span>
+<span class="gd">-        book_id: UUID,</span>
+<span class="gd">-        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gd">-    ) -&gt; Book:</span>
+<span class="gd">-        book = books_repo.get(book_id=book_id)</span>
+<span class="gd">-        return book</span>
+<span class="gd">-</span>
+<span class="gd">-    @app.post(&quot;/&quot;, name=&quot;books:create-book&quot;, status_code=201)</span>
+<span class="gd">-    def create_new_book(</span>
+<span class="gd">-        book: Book,</span>
+<span class="gd">-        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gd">-    ) -&gt; Book:</span>
+<span class="gd">-        book_db = books_repo.add(book)</span>
+<span class="gd">-        return book_db</span>
+<span class="gd">-</span>
+<span class="gd">-    return app</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-@pytest.fixture</span>
+<span class="gd">-def client(app):</span>
+<span class="gd">-    return TestClient(app)</span>
+
+
+ def test_get_all_books_successfully(app, client) -&gt; None:
+     url_get_books = app.url_path_for(&quot;books:get-all-books&quot;)
+     response_get_books = client.get(url_get_books)
+     assert response_get_books.status_code == 200
+
+
+ def test_create_valid_book_successfully(app, client, a_book) -&gt; None:
+     url_create_book = app.url_path_for(&quot;books:create-book&quot;)
+</code></pre></div>
+
+
+<p><strong>tests/conftest.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,13 +1,54 @@</span>
+
+<span class="gi">+from typing import List</span>
+<span class="gi">+from uuid import UUID</span>
+<span class="gi">+</span>
+ import pytest
+<span class="gi">+from fastapi import FastAPI, Depends</span>
+<span class="gi">+from starlette.testclient import TestClient</span>
+
+<span class="gi">+from tests.repositories import InMemoryBookRepository</span>
+ from tests.schemas import Book
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture</span>
+<span class="gi">+def app():</span>
+<span class="gi">+    app = FastAPI()</span>
+<span class="gi">+</span>
+<span class="gi">+    @app.get(&quot;/&quot;, name=&quot;books:get-all-books&quot;)</span>
+<span class="gi">+    def get_all_books(</span>
+<span class="gi">+        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gi">+    ) -&gt; List[Book]:</span>
+<span class="gi">+        books = books_repo.list()</span>
+<span class="gi">+        return books</span>
+<span class="gi">+</span>
+<span class="gi">+    @app.get(&quot;/{book_id}/&quot;, name=&quot;books:get-book-by-id&quot;)</span>
+<span class="gi">+    def get_book_by_id(</span>
+<span class="gi">+        book_id: UUID,</span>
+<span class="gi">+        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gi">+    ) -&gt; Book:</span>
+<span class="gi">+        book = books_repo.get(book_id=book_id)</span>
+<span class="gi">+        return book</span>
+<span class="gi">+</span>
+<span class="gi">+    @app.post(&quot;/&quot;, name=&quot;books:create-book&quot;, status_code=201)</span>
+<span class="gi">+    def create_new_book(</span>
+<span class="gi">+        book: Book,</span>
+<span class="gi">+        books_repo: InMemoryBookRepository = Depends(InMemoryBookRepository)</span>
+<span class="gi">+    ) -&gt; Book:</span>
+<span class="gi">+        book_db = books_repo.add(book)</span>
+<span class="gi">+        return book_db</span>
+<span class="gi">+</span>
+<span class="gi">+    return app</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+@pytest.fixture</span>
+<span class="gi">+def client(app):</span>
+<span class="gi">+    return TestClient(app)</span>
+
+
+ @pytest.fixture()
+ def a_book() -&gt; Book:
+     return Book(title=&quot;A nice title&quot;, author=&quot;John Smith&quot;)
+
+
+ @pytest.fixture()
+ def another_book() -&gt; Book:
+     return Book(title=&quot;Another nice title&quot;, author=&quot;Jane Boo&quot;)
+</code></pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                The Repository Pattern
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                The Service Layer Pattern
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

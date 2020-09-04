@@ -1,0 +1,610 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.7">
+    
+    
+      
+        <title>Up and Running FastAPI - Marc Puig - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-the-project-structure-virtual-environment-and-initialize-the-git-repository" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Marc Puig - Notes" class="md-header-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Marc Puig - Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Up and Running FastAPI
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Marc Puig - Notes" class="md-nav__button md-logo" aria-label="Marc Puig - Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Marc Puig - Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="This Site" class="md-nav__link">
+      This Site
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      FastAPI Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="FastAPI Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        FastAPI Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Up and Running FastAPI
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Up and Running FastAPI" class="md-nav__link md-nav__link--active">
+      Up and Running FastAPI
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-project-structure-virtual-environment-and-initialize-the-git-repository" class="md-nav__link">
+    Create the project structure, virtual environment and initialize the git repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-needed-packages" class="md-nav__link">
+    Install needed packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-first-test" class="md-nav__link">
+    Create first test
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01.data_schemas/" title="Define Data Schemas" class="md-nav__link">
+      Define Data Schemas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02.repository_pattern/" title="The Repository Pattern" class="md-nav__link">
+      The Repository Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03.api_with_repository/" title="An API with a Repository" class="md-nav__link">
+      An API with a Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04.service_layer_pattern/" title="The Service Layer Pattern" class="md-nav__link">
+      The Service Layer Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05.sql_repository/" title="SQL Repository" class="md-nav__link">
+      SQL Repository
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06.settings/" title="Project Settings" class="md-nav__link">
+      Project Settings
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-project-structure-virtual-environment-and-initialize-the-git-repository" class="md-nav__link">
+    Create the project structure, virtual environment and initialize the git repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-needed-packages" class="md-nav__link">
+    Install needed packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-first-test" class="md-nav__link">
+    Create first test
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Up and Running FastAPI</h1>
+                
+                <p><a href="https://fastapi.tiangolo.com/">FastAPI</a> is a python framework to create high performance APIs, ready for production. 
+The FastAPI project has been inspired by some well-known predecessors: Flask, Django, Requests, Marshmallow, Swagger,... 
+(<a href="https://fastapi.tiangolo.com/alternatives/">here you can find more information about this topic</a>). </p>
+<p>One of the key features is that it is very fast to code. And this is the goal of this first note, 
+to start a FastAPI project from scratch.</p>
+<h2 id="create-the-project-structure-virtual-environment-and-initialize-the-git-repository">Create the project structure, virtual environment and initialize the git repository</h2>
+<p>The first step is to create the base directory and some basic files:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">mkdir fastapi_basics</span>
+<span class="err">cd fastapi_basics</span>
+<span class="err">mkdir -p tests</span>
+<span class="err">touch .gitignore requirements.txt</span>
+</code></pre></div>
+
+
+<p>In this case, we'll use a virtual environment to run the project. A better practice would be to use a docker image as a container,
+but this is out of the scope of those notes. To create a Python 3 virtual environment is very simple:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">python -m venv ~/.venv/fastapi_basics</span>
+<span class="err">source ~/.venv/fastapi_basics/bin/activate</span>
+</code></pre></div>
+
+
+<p>And the third step to create the main skeleton of the project is to initialize the git repository, 
+create the branch <code>up_and_running</code> on, and switch into it: </p>
+<div class="codehilite"><pre><span></span><code><span class="err">git init</span>
+<span class="err">git checkout -b up_and_running</span>
+</code></pre></div>
+
+
+<p>A good practice is to setup the <code>.gitignore</code> file. Now is the moment. In my case I added these lines:</p>
+<div class="codehilite"><pre><span></span><code><span class="na">.idea</span>
+<span class="err">*</span><span class="na">.pyc</span>
+</code></pre></div>
+
+
+<h2 id="install-needed-packages">Install needed packages</h2>
+<p>With the base of the project ready, it's time to start thinking on the FastAPI framework. 
+Head into the <code>requirements.txt</code> file and update it with the following code:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">fastapi==0.61.0</span>
+<span class="err">pytest==6.0.1</span>
+</code></pre></div>
+
+
+<p>With the requirements file updated, let's install the required python packages to start testing our initial note..</p>
+<div class="codehilite"><pre><span></span><code><span class="err">pip install -r requirements.txt </span>
+</code></pre></div>
+
+
+<p>The previous command, install the 2 specified packages and its dependencies, like pydantic or starlette in the virtual environment. </p>
+<p>Before to start writing any test, let's save the changes to git:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">git add .</span>
+<span class="err">git commit -m &quot;Initial requirements and .gitignore&quot;</span>
+</code></pre></div>
+
+
+<h2 id="create-first-test">Create first test</h2>
+<p>We have defined the basic structure of the test project, we have setup the environment, and now it's time to start writing some real python code!
+We'll write the first test. The goal of this first test is to briefly show the concepts behind TDD.</p>
+<p>First, we define our basic goal: to create a very simple function to sum two integer numbers and return its sum.</p>
+<p>The specifications are very simple:
+- the input are two integer numbers: 'x' and 'y'.
+- the output is an integer number, resulting of making the sum of the two input numbers.</p>
+<p>Second, we write our first test. But previously, we need to create the test file:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">touch tests/test_00_using_tests_for_everything.py</span>
+</code></pre></div>
+
+
+<p>Let's write 3 tests:</p>
+<ul>
+<li><code>test_sum_integers_with_correct_values_successfully</code></li>
+<li><code>test_sum_integers_with_strings_fails</code></li>
+<li><code>test_sum_integers_with_floats_fails</code></li>
+</ul>
+<p><strong>tests/test_00_using_tests_for_everything.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+import pytest</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def sum_integers(x, y):</span>
+<span class="gi">+    return x + y</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_sum_integers_with_correct_values_successfully():</span>
+<span class="gi">+    result = sum_integers(1, 3)</span>
+<span class="gi">+    assert result == 4</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_sum_integers_with_strings_fails():</span>
+<span class="gi">+    with pytest.raises(ValueError):</span>
+<span class="gi">+        sum_integers(&#39;1&#39;, &#39;3&#39;)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+def test_sum_integers_with_floats_fails():</span>
+<span class="gi">+    with pytest.raises(ValueError):</span>
+<span class="gi">+        sum_integers(1.0, 3.0)</span>
+</code></pre></div>
+
+
+<p>If we run them, we can see that the first test pass, the other two fail.</p>
+<p><strong>tests/test_00_using_tests_for_everything.py:12</strong> </p>
+<div class="codehilite"><pre><span></span><code><span class="go">&gt;           sum_integers(&#39;1&#39;, &#39;3&#39;)</span>
+<span class="go">E           Failed: DID NOT RAISE &lt;class &#39;ValueError&#39;&gt;</span>
+</code></pre></div>
+
+
+<p><strong>tests/test_00_using_tests_for_everything.py:17</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="go">&gt;           sum_integers(1.0, 3.0)</span>
+<span class="go">E           Failed: DID NOT RAISE &lt;class &#39;ValueError&#39;&gt;</span>
+</code></pre></div>
+
+
+<p>Let's add a simple validation inside the <code>sum_integers</code> function, to check that input params are integers:</p>
+<p><strong>tests/test_00_using_tests_for_everything.py</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">@@ -1,14 +1,16 @@</span>
+
+ import pytest
+
+
+<span class="gd">-def sum_integers(x, y):</span>
+<span class="gi">+def sum_integers(x: int, y: int) -&gt; int:</span>
+<span class="gi">+    if not isinstance(x, int) or not isinstance(y, int):</span>
+<span class="gi">+        raise ValueError(&quot;Parameters &#39;x&#39; and &#39;y&#39; must be integers.&quot;)</span>
+     return x + y
+
+
+ def test_sum_integers_with_correct_values_successfully():
+     result = sum_integers(1, 3)
+     assert result == 4
+
+
+ def test_sum_integers_with_strings_fails():
+     with pytest.raises(ValueError):
+</code></pre></div>
+
+
+<p>And now, if we run the tests again:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">pytest tests/test_00_using_tests_for_everything.py -v</span>
+</code></pre></div>
+
+
+<p>we see that all the tests go green:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">==========================</span> <span class="n">test</span> <span class="k">session</span> <span class="n">starts</span> <span class="o">===========================</span>
+<span class="n">collected</span> <span class="mi">3</span> <span class="n">items</span>                                                                                                                                                            
+
+<span class="n">tests</span><span class="o">/</span><span class="n">test_00_using_tests_for_everything</span><span class="p">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_sum_integers_with_correct_values_successfully</span> <span class="n">PASSED</span> <span class="p">[</span> <span class="mi">33</span><span class="o">%</span><span class="p">]</span>
+<span class="n">tests</span><span class="o">/</span><span class="n">test_00_using_tests_for_everything</span><span class="p">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_sum_integers_with_strings_fails</span> <span class="n">PASSED</span>               <span class="p">[</span> <span class="mi">66</span><span class="o">%</span><span class="p">]</span>
+<span class="n">tests</span><span class="o">/</span><span class="n">test_00_using_tests_for_everything</span><span class="p">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_sum_integers_with_floats_fails</span> <span class="n">PASSED</span>                <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
+
+<span class="o">=============================</span> <span class="mi">3</span> <span class="n">passed</span> <span class="k">in</span> <span class="mi">0</span><span class="p">.</span><span class="mi">02</span><span class="n">s</span> <span class="o">=============================</span>
+</code></pre></div>
+
+
+<p>This is a very simple example of the TDD approach. TDD stands for Test Driven Design, and it means exactly the
+steps done previously. First, design what you want to achieve, then write the tests and the code to be tested,
+and run. If everything works, great, if it doesn't, fix the code and check again. </p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../" title="Overview" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../01.data_schemas/" title="Define Data Schemas" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Define Data Schemas
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
