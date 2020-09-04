@@ -17,6 +17,9 @@ docs_dir: src
 site_dir: docs
 extra_css:
   - css/extra.css
+google_analytics:
+  - UA-177285937-1
+  - auto
 markdown_extensions:
   - codehilite
 plugins:
